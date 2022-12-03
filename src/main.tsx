@@ -3,7 +3,11 @@ import "animate.css/animate.css";
 import "@/i18n";
 import "@/assets/css/main.min.css";
 
+<<<<<<< HEAD
 import App from "./app";
+=======
+import App from "./app_app";
+>>>>>>> 2a6c2c0 (initial commit)
 import { ConfigProvider } from "antd";
 import { ErrorBundary } from "./components/general";
 import { PersistGate } from "redux-persist/integration/react";

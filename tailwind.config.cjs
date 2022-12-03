@@ -18,10 +18,14 @@ module.exports = {
           950: "#3f4254",
         },
         primary: {
+<<<<<<< HEAD
           // 100: "#0095e8",
           100: "#f3f9fe",
           200: "#1D59A4",
           300: "#004871",
+=======
+          100: "#0095e8",
+>>>>>>> 2a6c2c0 (initial commit)
         },
         theme: {
           placeholder: "#a1a5b7",

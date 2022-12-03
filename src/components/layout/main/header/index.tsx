@@ -1,15 +1,9 @@
-import { Button, Divider, Dropdown, Space } from "antd";
 import { IButton, IDropdown, IInput } from "@/components/general";
 
-import Chart from "@/components/icons/chat";
-import ChartLine from "@/components/icons/chart_line";
-import DoubleArrow from "@/components/icons/double_arrow";
 import { Header } from "antd/es/layout/layout";
 import NotificationIcon from "@/components/icons/notification";
-import React from "react";
 import SearchIcon from "@/components/icons/search";
 import TicketIcon from "@/components/icons/ticket";
-import UserIcon from "@/components/icons/user";
 import UserMenu from "@/components/menus/user_menu";
 import { theme } from "@/constant/theme";
 import { useI18Next } from "@/i18n";
@@ -18,7 +12,6 @@ type Props = {};
 
 const IHeader = (props: Props) => {
   const { t } = useI18Next();
-
   return (
     <Header
       className="site-layout-background !bg-white sticky top-0 z-10 w-full !px-0 shadow-header"
@@ -41,10 +34,16 @@ const IHeader = (props: Props) => {
           </div>
           <div className="flex items-center flex-row-reverse">
             <UserMenu />
-            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group">
+            <IButton
+              type="text"
+              className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group"
+            >
               <NotificationIcon />
             </IButton>
-            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group">
+            <IButton
+              type="text"
+              className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group"
+            >
               <TicketIcon />
             </IButton>
           </div>

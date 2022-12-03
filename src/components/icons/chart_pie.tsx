@@ -20,11 +20,11 @@ const ChartPie = ({ color, ...props }: SVGProps<SVGSVGElement>) => {
         />
         <path
           d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z"
+<<<<<<< HEAD
           className={`fill-gray-500 group-hover:fill-primary-200 ${color}`}
+=======
+          className={`fill-gray-500 group-hover:fill-primary-100 ${color}`}
         />
-      </g>
-    </svg>
-  );
 };
 
 export default ChartPie;

@@ -2,6 +2,7 @@ import { FilterValue, SorterResult } from "antd/lib/table/interface";
 import { parse, stringify, stringifyUrl } from "query-string";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { TableCurrentDataSource } from "antd/es/table/interface";
 import { TablePaginationConfig } from "antd";
 
 export const useConvertTableFilterRoQuesyString = () => {
@@ -9,14 +10,13 @@ export const useConvertTableFilterRoQuesyString = () => {
   const navigate = useNavigate();
   let qs = parse(location.search);
 
-  const tableParamsToQsConvertor = (
+  const tableParamsToQsConvertor = <T>(
     pagination: TablePaginationConfig,
     filters: Record<string, FilterValue | null>,
-    sorter:
-      | SorterResult<RegistrationRequestModel>
-      | SorterResult<RegistrationRequestModel>[],
-    extra: TableCurrentDataSource<RegistrationRequestModel>
+    sorter: SorterResult<T> | SorterResult<T>[],
+    extra: TableCurrentDataSource<T>
   ) => {
+    if (Array.isArray(sorter)) return;
     if (pagination) {
       qs = { ...qs, page: pagination?.current?.toString() || "" };
     }

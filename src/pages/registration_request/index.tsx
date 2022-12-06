@@ -4,8 +4,6 @@ import RegistrationRequestTable from "@/components/container/registration_reques
 type Props = {};
 
 const RegistrationRequest = (props: Props) => {
-  
-
   return (
     <MainLayout>
       <RegistrationRequestTable />

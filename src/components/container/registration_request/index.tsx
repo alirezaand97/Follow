@@ -1,4 +1,9 @@
-import { FilterValue, SorterResult, TableCurrentDataSource, TablePaginationConfig } from "antd/es/table/interface";
+import {
+  FilterValue,
+  SorterResult,
+  TableCurrentDataSource,
+  TablePaginationConfig,
+} from "antd/es/table/interface";
 
 import ICard from "@/components/general/card";
 import { ITable } from "@/components/general";
@@ -25,11 +30,15 @@ const App: React.FC = () => {
 
   const tableColumn = useTableConfig();
 
-  console.log(tableColumn);
   const onChange = (
-    pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<RegistrationRequestModel> | SorterResult<RegistrationRequestModel>[], extra: TableCurrentDataSource<RegistrationRequestModel>
+    pagination: TablePaginationConfig,
+    filters: Record<string, FilterValue | null>,
+    sorter:
+      | SorterResult<RegistrationRequestModel>
+      | SorterResult<RegistrationRequestModel>[],
+    extra: TableCurrentDataSource<RegistrationRequestModel>
   ) => {
-    // tableParamsToQsConvertor(pagination, filters, sorter);
+    tableParamsToQsConvertor(pagination, filters, sorter, extra);
   };
 
   return (

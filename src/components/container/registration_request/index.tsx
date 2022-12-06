@@ -1,90 +1,47 @@
-import { Button, Input, Space, Table } from "antd";
-import type { ColumnType, ColumnsType } from "antd/es/table";
-import React, { useRef, useState } from "react";
+import { FilterValue, SorterResult, TableCurrentDataSource, TablePaginationConfig } from "antd/es/table/interface";
 
-import type { FilterConfirmProps } from "antd/es/table/interface";
-import type { InputRef } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import useColumnSearchProps from "@/components/general/table/use_column_search_props";
+import ICard from "@/components/general/card";
+import { ITable } from "@/components/general";
+import React from "react";
+import { RegistrationRequestModel } from "@/models/registration_request.model";
+import { SortOrder } from "antd/lib/table/interface";
+import { parse } from "query-string";
 import { useConvertTableFilterRoQuesyString } from "@/utils/convertTableFilterRoQuesyString";
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
-
-type DataIndex = keyof DataType;
-
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+import { useGetRegistrationRequestListQuery } from "@/store/service/registrationRequest";
+import { useLocation } from "react-router-dom";
+import useTableConfig from "./table_config";
 
 const App: React.FC = () => {
-  const getColumnSearchProps = useColumnSearchProps();
-
-  const columns: ColumnsType<DataType> = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      width: "30%",
-      ...getColumnSearchProps("name"),
-
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      width: "20%",
-      ...getColumnSearchProps("age"),
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-      ...getColumnSearchProps("address"),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ["descend", "ascend"],
-    },
-  ];
+  const { search } = useLocation();
+  const searchPaeams = parse(search) as {
+    sortOrder: SortOrder;
+    sortField: string;
+  };
+  const { data, isLoading } = useGetRegistrationRequestListQuery();
 
   const { tableParamsToQsConvertor } = useConvertTableFilterRoQuesyString();
 
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<DataType>
+  const handleTableChange = () => {};
+
+  const tableColumn = useTableConfig();
+
+  console.log(tableColumn);
+  const onChange = (
+    pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<RegistrationRequestModel> | SorterResult<RegistrationRequestModel>[], extra: TableCurrentDataSource<RegistrationRequestModel>
   ) => {
-    tableParamsToQsConvertor(pagination, filters, sorter);
+    // tableParamsToQsConvertor(pagination, filters, sorter);
   };
 
   return (
-    <Table columns={columns} dataSource={data} onChange={handleTableChange} />
+    <ICard className="px-8">
+      <ITable<RegistrationRequestModel>
+        columns={tableColumn}
+        dataSource={data}
+        onChange={onChange}
+        loading={isLoading}
+        className="iresponsive-table"
+      />
+    </ICard>
   );
 };
 

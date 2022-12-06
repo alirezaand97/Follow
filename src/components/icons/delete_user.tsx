@@ -1,6 +1,6 @@
 import React, { SVGProps } from "react";
 
-const DeleteIcon = ({ color, ...props }: SVGProps<SVGSVGElement>) => {
+const DeleteUserIcon = ({ color, ...props }: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       {...props}
@@ -20,4 +20,4 @@ const DeleteIcon = ({ color, ...props }: SVGProps<SVGSVGElement>) => {
   );
 };
 
-export default DeleteIcon;
+export default DeleteUserIcon;

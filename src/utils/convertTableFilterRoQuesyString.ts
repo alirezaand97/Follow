@@ -11,8 +11,11 @@ export const useConvertTableFilterRoQuesyString = () => {
 
   const tableParamsToQsConvertor = (
     pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<{}>
+    filters: Record<string, FilterValue | null>,
+    sorter:
+      | SorterResult<RegistrationRequestModel>
+      | SorterResult<RegistrationRequestModel>[],
+    extra: TableCurrentDataSource<RegistrationRequestModel>
   ) => {
     if (pagination) {
       qs = { ...qs, page: pagination?.current?.toString() || "" };

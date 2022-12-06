@@ -21,15 +21,19 @@ const MainLayout = (props: Props) => {
       <ISideBar collapsed={collapsed} setCollapsed={setCollapsed} />
 
       <Layout
-        className="site-layout transition-all duration-200"
-        style={{
-          marginRight: `${
-            collapsed ? theme.sideBarCollapsedWidth : theme.sideBarWidth
-          }px`,
-        }}
+        className={`site-layout transition-all duration-200 ${
+          collapsed
+            ? "mr-0 lg:mr-sideBarCollapsedWidth"
+            : "mr-0 lg:mr-sideBarWidth"
+        } `}
+        // style={{
+        //   marginRight: `${
+        //     collapsed ? theme.sideBarCollapsedWidth : theme.sideBarWidth
+        //   }px`,
+        // }}
       >
         <IHeader />
-        <Content className="site-layout-background p-8">
+        <Content className="site-layout-background p-4 md:p-8">
           {props.children}
         </Content>
       </Layout>

@@ -38,7 +38,7 @@ const useColumnSearchProps = () => {
   ): ColumnType<any> => ({
     title: (
       <div className=" w-full flex justify-between">
-        <div>{dataIndex}</div>
+        <div>{t(`general.${dataIndex}`)}</div>
         {searchValues[dataIndex] && (
           <Tag color="default">{searchValues[dataIndex]}</Tag>
         )}
@@ -55,7 +55,7 @@ const useColumnSearchProps = () => {
       <div
         style={{ padding: 8 }}
         onKeyDown={(e) => e.stopPropagation()}
-        className="w-72"
+        className="w-60"
       >
         <IInput
           placeholder={`${t("general.searchSth", {
@@ -91,12 +91,17 @@ const useColumnSearchProps = () => {
         </Space>
       </div>
     ),
+    className: `${searchValues[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,
     filterIcon: (filtered: boolean) => (
       <SearchIcon
         className="w-5"
         color={`${searchValues[dataIndex] ? "fill-primary-100" : undefined}`}
       />
     ),
+    defaultSortOrder:
+      searchValues["sortField"] == dataIndex && searchValues["sortOrder"]
+        ? searchValues["sortOrder"]
+        : undefined,
   });
 
   return getColumnSearchProps;

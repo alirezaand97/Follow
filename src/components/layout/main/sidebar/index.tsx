@@ -23,7 +23,7 @@ const ISideBar = ({ collapsed, setCollapsed }: Props) => {
       theme="light"
       collapsible
       collapsed={collapsed}
-      className=" h-screen !fixed right-0 top-0 bottom-0 z-20 bg-white "
+      className=" h-screen !fixed right-0 top-0 bottom-0 z-20 bg-white lg:block hidden"
       width={theme.sideBarWidth}
     >
       <div className="relative h-full">
@@ -31,7 +31,7 @@ const ISideBar = ({ collapsed, setCollapsed }: Props) => {
           className={`flex items-center ${collapsed ? "pr-0" : "pr-8"}`}
           style={{ height: theme.headerHeight }}
         >
-          <AgahLogo className="w-32 px-1" />
+          <AgahLogo className=" w-24 px-1" />
         </div>
         <Menu
           mode="inline"
@@ -40,17 +40,17 @@ const ISideBar = ({ collapsed, setCollapsed }: Props) => {
           onClick={(info) => navigate(info.key)}
           items={menuItems}
         />
-        <div
-          className="trigger absolute bottom-0 right-full -mr-4 mb-8  w-8 h-8 bg-primary-100/60 rounded-sm flex justify-center items-center "
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          <DoubleArrow
-            className={`w-5 transition-all duration-300  cursor-pointer  ${
-              collapsed ? "rotate-180" : ""
-            }`}
-            color="!fill-white"
-          />
-        </div>
+      </div>
+      <div
+        className="trigger flex absolute bottom-0 right-full -mr-4 mb-8  w-8 h-8 bg-primary-100/60 rounded-sm  justify-center items-center "
+        onClick={() => setCollapsed(!collapsed)}
+      >
+        <DoubleArrow
+          className={`w-5 transition-all duration-300  cursor-pointer  ${
+            collapsed ? "rotate-180" : ""
+          }`}
+          color="!fill-white"
+        />
       </div>
     </Sider>
   );

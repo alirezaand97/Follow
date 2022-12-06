@@ -38,6 +38,17 @@ module.exports = {
         yekanBold: "YekanBakhBold",
         yekanEn: "YekanBakhEn",
       },
+      width: {
+        sideBarWidth: "280px",
+        sideBarCollapsedWidth: "80px",
+      },
+      margin: {
+        sideBarWidth: "280px",
+        sideBarCollapsedWidth: "80px",
+      },
+      height: {
+        headerHeight: "70px",
+      },
     },
   },
   plugins: [],

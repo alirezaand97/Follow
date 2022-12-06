@@ -30,5 +30,6 @@
   "too-many-files": "The number of selected files exceeds the limit.  ",
   "ticketImageInfo": "Image size must be less than 1 MB  ",
   "uploadDesc": "Drag and drop the file into the box ",
-  "usernameDesc": "Username Description"
+  "usernameDesc": "Username Description",
+  "NotFoundErrorPage": "Not Found "
 }

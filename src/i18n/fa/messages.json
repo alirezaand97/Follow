@@ -36,5 +36,6 @@
   "ticketImageInfo": "حجم تصویر باید کمتر از 1 مگابایت باشد",
   "zeroLimitaion": "{{field}} نباید شامل تعداد زیادی صفر متوالی باشد.",
   "uploadDesc": "فایل را درون کادر بکشید و رها کنید",
-  "usernameDesc": "نام کاربری"
+  "usernameDesc": "نام کاربری",
+  "NotFoundErrorPage": "صفحه مورد نظر یافت نشد."
 }

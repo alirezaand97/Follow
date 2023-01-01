@@ -12,83 +12,71 @@ const useMenuItems = () => {
   const { t } = useI18Next();
   return [
     {
-      key: pageNames.registrationRequest,
-      icon: <UserIcon className="w-6" color="group-hover:fill-primary-100" />,
+      key: "registrationPanel",
+      icon: <UserIcon className="w-6" color="group-hover:fill-primary-200" />,
       label: (
-        <span className="text-base group-hover:text-primary-100">
-          درخواست های ثبت نام
+        <span className="text-base group-hover:text-primary-200">
+          پنل ثبت نام
         </span>
       ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
-    {
-      key: "2",
-      icon: <Comode className="w-6" color="group-hover:fill-primary-100" />,
-      label: (
-        <span className="text-base group-hover:text-primary-100">
-          درخواست های پیگیری
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
-    {
-      key: "3",
-      icon: (
-        <SettingIcon className="w-6" color="group-hover:fill-primary-100" />
-      ),
-      label: (
-        <span className="text-base  group-hover:text-primary-100">
-          تنظیمات انواع پیگیری
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
+      className: "group !mt-2 !text-right",
+      children: [
+        {
+          key: pageNames.registrationRequest,
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              درخواست های ثبت نام
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
+        {
+          key: "3",
+          label: (
+            <span className="text-base  group-hover/child:text-primary-200">
+              تنظیمات انواع پیگیری
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
 
-    {
-      key: "4",
-      icon: (
-        <CompassIcon className="w-6" color="group-hover:fill-primary-100" />
-      ),
-      label: (
-        <span className="text-base group-hover:text-primary-100">
-          شهرهای ترابر
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
-    {
-      key: "5",
-      icon: (
-        <SettingTwoIcon className="w-6" color="group-hover:fill-primary-100" />
-      ),
-      label: (
-        <span className="text-base group-hover:text-primary-100">
-          تنظیمات شعب
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
-    {
-      key: "6",
-      icon: (
-        <LocationIcon className="w-6" color="group-hover:fill-primary-100" />
-      ),
-      label: (
-        <span className="text-base group-hover:text-primary-100">
-          مراکز احراز هویت
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
-    },
-    {
-      key: "7",
-      icon: <ChartLine className="w-6" color="group-hover:fill-primary-100" />,
-      label: (
-        <span className="text-base group-hover:text-primary-100">
-          عملکرد دفاتر احراز هویت
-        </span>
-      ),
-      className: "hover:!bg-gray-100 group !mt-2",
+        {
+          key: "4",
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              شهرهای ترابر
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
+        {
+          key: "5",
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              تنظیمات شعب
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
+        {
+          key: "6",
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              مراکز احراز هویت
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
+        {
+          key: "7",
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              عملکرد دفاتر احراز هویت
+            </span>
+          ),
+          className: "hover:!bg-gray-100 group/child !mt-2 !text-right",
+        },
+      ],
     },
   ];
 };

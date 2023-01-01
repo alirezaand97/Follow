@@ -6,10 +6,15 @@ export interface IInputProps extends InputProps {
 
 const IInput = ({ isPassword, className, ...props }: IInputProps) => {
   if (isPassword)
-    return <Input.Password className={`mt-1 py-2 ${className}`} {...props} />;
+    return (
+      <Input
+        className={`placeholder:!text-theme-placeholder placeholder:!text-sm rounded-md focus:!shadow-none ${className}`}
+        {...props}
+      />
+    );
   return (
     <Input
-      className={`mt-1 py-2 placeholder:text-theme-placeholder rounded-md focus:!shadow-none ${className}`}
+      className={` placeholder:!text-theme-placeholder placeholder:!text-sm rounded-md focus:!shadow-none ${className}`}
       {...props}
     />
   );

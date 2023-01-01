@@ -95,7 +95,7 @@ const useColumnSearchProps = () => {
     filterIcon: (filtered: boolean) => (
       <SearchIcon
         className="w-5"
-        color={`${searchValues[dataIndex] ? "fill-primary-100" : undefined}`}
+        color={`${searchValues[dataIndex] ? "fill-primary-200" : undefined}`}
       />
     ),
     defaultSortOrder:

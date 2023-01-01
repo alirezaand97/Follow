@@ -29,6 +29,7 @@ body {
   background: #cbd5e0;
   cursor: pointer;
 }
+
 .ant-table-body::-webkit-scrollbar {
   width: 4px;
   cursor: pointer;
@@ -39,7 +40,7 @@ body {
 }
 
 .ant-btn-primary {
-  @apply bg-primary-100;
+  @apply bg-primary-200;
 }
 
 .ant-table-cell {
@@ -48,7 +49,7 @@ body {
 
 .itable-pagination {
   .ant-pagination-item-active {
-    @apply bg-primary-100;
+    @apply bg-primary-200;
     a {
       @apply text-white hover:text-white;
     }
@@ -88,5 +89,39 @@ body {
     box-shadow: none !important;
     background: transparent !important;
     padding: 0 !important;
+  }
+}
+
+.ant-dropdown-menu-item:hover .ant-dropdown-menu-title-content {
+  @apply text-primary-200;
+}
+
+.iinput {
+  @apply placeholder:text-theme-placeholder placeholder:text-sm rounded-md focus:shadow-none;
+}
+
+.ant-form-item-label {
+  text-align: right !important;
+  padding: 0 !important;
+  label {
+    height: auto !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+.requests-table {
+  .ant-table-tbody .ant-table-cell {
+    @apply px-0.5;
+  }
+  .ant-table-thead .ant-table-cell {
+    @apply px-1.5;
+  }
+}
+
+.accordion-panel-header {
+  @apply my-2;
+  .ant-collapse-header {
+    @apply border border-gray-200;
+    border-radius: 6px !important;
   }
 }

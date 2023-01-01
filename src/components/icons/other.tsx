@@ -13,9 +13,9 @@ const OtherIcon = ({ color, ...props }: SVGProps<SVGSVGElement>) => {
     >
       <g stroke="none"   fill="none"    >
         <rect x="0" y="0" width="24" height="24" />
-        <circle className={`fill-gray-500 group-hover:fill-primary-100 ${color}`} cx="5" cy="12" r="2" />
-        <circle className={`fill-gray-500 group-hover:fill-primary-100 ${color}`} cx="12" cy="12" r="2" />
-        <circle className={`fill-gray-500 group-hover:fill-primary-100 ${color}`} cx="19" cy="12" r="2" />
+        <circle className={`fill-gray-500 group-hover:fill-primary-200 ${color}`} cx="5" cy="12" r="2" />
+        <circle className={`fill-gray-500 group-hover:fill-primary-200 ${color}`} cx="12" cy="12" r="2" />
+        <circle className={`fill-gray-500 group-hover:fill-primary-200 ${color}`} cx="19" cy="12" r="2" />
       </g>
     </svg>
   );

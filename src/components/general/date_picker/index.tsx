@@ -1,21 +1,19 @@
-import {
-    DatePicker as DatePickerJalali,
-    JalaliLocaleListener
-} from "antd-jalali";
+import * as dayjs from "dayjs";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, DatePicker } from "antd";
+import { JalaliLocaleListener, DatePicker as JalaliPicker } from "antd-jalali";
+
+import { MdOutlineDateRange } from "react-icons/md";
+import { PickerProps } from "antd/es/date-picker/generatePicker";
 import fa_IR from "antd/lib/locale/fa_IR";
 
-interface Props {}
+const IJalaliDatePicker = (props: PickerProps<dayjs.Dayjs>) => {
+  dayjs.locale("fa");
 
-const IJalaliDatePicker = (props: Props) => {
   return (
     <ConfigProvider locale={fa_IR}>
       <JalaliLocaleListener />
-      <DatePickerJalali
-        onChange={(value: any) => console.log(value.year())}
-        size="large"
-      />
+      <DatePicker {...props} />
     </ConfigProvider>
   );
 };

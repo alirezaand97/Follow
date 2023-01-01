@@ -10,6 +10,7 @@ import React from "react";
 import SearchIcon from "@/components/icons/search";
 import TicketIcon from "@/components/icons/ticket";
 import UserIcon from "@/components/icons/user";
+import UserMenu from "@/components/menus/user_menu";
 import { theme } from "@/constant/theme";
 import { useI18Next } from "@/i18n";
 
@@ -26,7 +27,10 @@ const IHeader = (props: Props) => {
       <div className="h-full w-full flex justify-between items-center">
         <div className="flex w-full px-8 items-center justify-between">
           <div className="flex-1 max-w-md w-full">
-            <IDropdown overlayClassName="!max-w-3xl w-full" content={<div className="h-[600px] ">x </div>}>
+            <IDropdown
+              overlayClassName="!max-w-3xl w-full"
+              content={<div className="h-[400px] ">x </div>}
+            >
               <IInput
                 placeholder={t("general.search")}
                 suffix={<SearchIcon />}
@@ -36,16 +40,11 @@ const IHeader = (props: Props) => {
             </IDropdown>
           </div>
           <div className="flex items-center flex-row-reverse">
-            <IButton
-              type="text"
-              className="!p-1 lg:!p-3 mx-1.5 md:mx-2 group bg-gray-100"
-            >
-              <UserIcon />
-            </IButton>
-            <IButton type="text" className="!p-1  lg:!p-2 mx-1.5 md:mx-2 group">
+            <UserMenu />
+            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 group">
               <NotificationIcon />
             </IButton>
-            <IButton type="text" className="!p-1  lg:!p-2 mx-1.5 md:mx-2 group">
+            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 group">
               <TicketIcon />
             </IButton>
           </div>

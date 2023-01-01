@@ -6,6 +6,7 @@ import IHeader from "./header";
 import ISideBar from "./sidebar";
 import { Layout } from "antd";
 import { theme } from "@/constant/theme";
+import { useAppSelector } from "@/store";
 
 const { Content } = Layout;
 
@@ -14,23 +15,22 @@ type Props = {
 };
 
 const MainLayout = (props: Props) => {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const { sideBar, drawerStatus } = useAppSelector((s) => s.drawers);
 
   return (
     <Layout className="min-h-full">
-      <ISideBar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <ISideBar />
 
       <Layout
         className={`site-layout transition-all duration-200 ${
-          collapsed
+          sideBar.collapsed
             ? "mr-0 lg:mr-sideBarCollapsedWidth"
             : "mr-0 lg:mr-sideBarWidth"
-        } `}
-        // style={{
-        //   marginRight: `${
-        //     collapsed ? theme.sideBarCollapsedWidth : theme.sideBarWidth
-        //   }px`,
-        // }}
+        } 
+        `}
+        style={{
+          marginLeft: drawerStatus.isOpen ? `${drawerStatus.width}px` : "0",
+        }}
       >
         <IHeader />
         <Content className="site-layout-background p-4 md:p-8">

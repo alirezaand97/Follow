@@ -1,11 +1,32 @@
+import { RegistrationRequestModel } from "@/models/registration_request.model";
 import serviceApi from ".";
 
 const registrationRequest = serviceApi.injectEndpoints({
   endpoints: (build) => ({
-    getRegistrationRequestList: build.query<[], void>({
-      query: () => ({ method: "GET", url: "/registerationRequest" }),
+    getRegistrationRequestList: build.query<RegistrationRequestModel[], any>({
+      query: (params) => ({
+        method: "GET",
+        url: "/registerationRequest",
+        params: { ...params },
+      }),
+    }),
+    getRegistrationRequest: build.query<
+      RegistrationRequestModel,
+      { CustomerId: number }
+    >({
+      query: ({ CustomerId }) => {
+        console.log("CustomerId", `/registerationRequest/${CustomerId}`);
+
+        return {
+          method: "GET",
+          url: `/registerationRequest/${CustomerId}`,
+        };
+      },
     }),
   }),
 });
 
-export const { useGetRegistrationRequestListQuery } = registrationRequest;
+export const {
+  useGetRegistrationRequestListQuery,
+  useGetRegistrationRequestQuery,
+} = registrationRequest;

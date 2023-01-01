@@ -1,9 +1,11 @@
-import { Space, Tag } from "antd";
-
 import { ColumnsType } from "antd/es/table";
 import { IButton } from "@/components/general";
 import { RegistrationRequestModel } from "@/models/registration_request.model";
+import { Tag } from "antd";
+import { t } from "i18next";
 import toJalali from "@/utils/to_jalali";
+import { toggleRegisterRequestDetailDrawer } from "@/store/drawers";
+import { useAppDispatch } from "@/store";
 import useColumnFilterProps from "@/components/general/table/use_column_filter_props";
 import useColumnSearchProps from "@/components/general/table/use_column_search_props";
 
@@ -11,65 +13,79 @@ const useTableConfig = () => {
   const getColumnSearchProps = useColumnSearchProps();
   const getColumnFilterProps = useColumnFilterProps();
 
+  const dispatch = useAppDispatch();
+
+  const handleShowRequestDetail = (record: RegistrationRequestModel) => {
+    dispatch(
+      toggleRegisterRequestDetailDrawer({
+        isOpen: true,
+        customerId: +record.CustomerId,
+      })
+    );
+  };
+
   const columns: ColumnsType<RegistrationRequestModel> = [
     {
-      title: "searchPaeams",
-      dataIndex: "customerId",
-      key: "customerId",
+      title: t("general.CustomerId"),
+      dataIndex: "CustomerId",
+      key: "CustomerId",
       width: 140,
       ellipsis: true,
-      ...getColumnSearchProps("customerId"),
+      ...getColumnSearchProps("CustomerId"),
       sorter: true,
       sortDirections: ["descend", "ascend"],
       showSorterTooltip: true,
     },
     {
-      title: "firstName",
-      dataIndex: "firstName",
-      key: "firstName",
+      title: t("general.FirstName"),
+      dataIndex: "FirstName",
+      key: "FirstName",
       width: 120,
       ellipsis: true,
-      ...getColumnSearchProps("firstName"),
+      ...getColumnSearchProps("FirstName"),
       sorter: true,
       sortDirections: ["descend", "ascend"],
       showSorterTooltip: true,
     },
     {
-      title: "lastName",
-      dataIndex: "lastName",
-      key: "lastName",
+      title: t("general.LastName"),
+      dataIndex: "LastName",
+      key: "LastName",
       width: 160,
       ellipsis: true,
-      ...getColumnSearchProps("lastName"),
+      ...getColumnSearchProps("LastName"),
       sorter: true,
       sortDirections: ["descend", "ascend"],
       showSorterTooltip: true,
     },
     {
-      title: "phone",
-      dataIndex: "phone",
-      key: "phone",
+      title: t("general.CellPhone"),
+      dataIndex: "CellPhone",
+      key: "CellPhone",
       width: 160,
       ellipsis: true,
-      ...getColumnSearchProps("phone"),
+      ...getColumnSearchProps("CellPhone"),
     },
     {
-      title: "email",
-      dataIndex: "email",
-      key: "email",
+      title: t("general.EmailAddress"),
+      dataIndex: "EmailAddress",
+      key: "EmailAddress",
       width: 160,
       ellipsis: true,
-      ...getColumnSearchProps("email"),
+      ...getColumnSearchProps("EmailAddress"),
+      render: (value) => (
+        <p className="text-left flex" dir="ltr">
+          {value}
+        </p>
+      ),
     },
     {
-      title: "registerType",
-      dataIndex: "registerType",
-      key: "registerType",
+      title: t("general.RegisterType"),
+      dataIndex: "RegisterType",
+      key: "RegisterType",
       width: 120,
       ellipsis: true,
-      render(value, record, index) {
-        return <Tag color="blue">{value}</Tag>;
-      },
+      render: (value) => <Tag color="blue">{value}</Tag>,
       filters: [
         {
           text: "اوراق",
@@ -80,32 +96,32 @@ const useTableConfig = () => {
           value: "2",
         },
       ],
-      ...getColumnFilterProps("registerType"),
+      ...getColumnFilterProps("RegisterType"),
     },
 
     {
-      title: "fatherName",
-      dataIndex: "fatherName",
-      key: "fatherName",
+      title: t("general.FatherName"),
+      dataIndex: "FatherName",
+      key: "FatherName",
       width: 160,
       ellipsis: true,
       sorter: true,
       sortDirections: ["descend", "ascend"],
       showSorterTooltip: true,
-      ...getColumnSearchProps("fatherName"),
+      ...getColumnSearchProps("FatherName"),
     },
     {
-      title: "nationalCode",
-      dataIndex: "nationalCode",
-      key: "nationalCode",
+      title: t("general.NationalCode"),
+      dataIndex: "NationalCode",
+      key: "NationalCode",
       width: 140,
       ellipsis: true,
-      ...getColumnSearchProps("nationalCode"),
+      ...getColumnSearchProps("NationalCode"),
     },
     {
-      title: "createDate",
-      dataIndex: "createDate",
-      key: "createDate",
+      title: t("general.CreationDate"),
+      dataIndex: "CreationDate",
+      key: "CreationDate",
       width: 160,
       ellipsis: true,
       render(value, record, index) {
@@ -113,9 +129,9 @@ const useTableConfig = () => {
       },
     },
     {
-      title: "lastUpdateDate",
-      dataIndex: "lastUpdateDate",
-      key: "lastUpdateDate",
+      title: t("general.LastUpdateDate"),
+      dataIndex: "LastUpdateDate",
+      key: "LastUpdateDate",
       width: 160,
       ellipsis: true,
       render(value, record, index) {
@@ -123,15 +139,15 @@ const useTableConfig = () => {
       },
     },
     {
-      title: "followUpType",
-      dataIndex: "followUpType",
+      title: t("general.followUpType"),
+      dataIndex: "FollowUpType",
       key: "followUpType",
       width: 120,
       ellipsis: true,
       ...getColumnSearchProps("followUpType"),
     },
     {
-      title: "RecieveCustomerInfo",
+      title: t("general.RecieveCustomerInfo"),
       dataIndex: "RecieveCustomerInfo",
       key: "RecieveCustomerInfo",
       width: 80,
@@ -149,7 +165,7 @@ const useTableConfig = () => {
       ],
     },
     {
-      title: "actions",
+      title: t("general.actions"),
       dataIndex: "actions",
       key: "actions",
       width: 70,
@@ -158,9 +174,9 @@ const useTableConfig = () => {
       className: "flex justify-center",
       render(value, record, index) {
         return (
-          <Space>
-            <IButton size="small">عملیات</IButton>
-          </Space>
+          <IButton size="small" onClick={() => handleShowRequestDetail(record)}>
+            عملیات
+          </IButton>
         );
       },
     },

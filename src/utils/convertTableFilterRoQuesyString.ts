@@ -1,5 +1,5 @@
 import { FilterValue, SorterResult } from "antd/lib/table/interface";
-import { parse, stringify, stringifyUrl } from "query-string";
+import { parse, stringifyUrl } from "query-string";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { TableCurrentDataSource } from "antd/es/table/interface";
@@ -18,15 +18,23 @@ export const useConvertTableFilterRoQuesyString = () => {
   ) => {
     if (Array.isArray(sorter)) return;
     if (pagination) {
-      qs = { ...qs, page: pagination?.current?.toString() || "" };
+      qs = {
+        ...qs,
+        _page: pagination?.current?.toString() || "1",
+        _limit: pagination?.pageSize?.toString() || "10",
+      };
     }
     if (sorter.order) {
       qs = {
         ...qs,
-        sortField: sorter.field?.toString() || "",
-        sortOrder: sorter.order?.toString() || "",
+        _sort: sorter.field?.toString() || "",
+        _order: sorter.order == "ascend" ? "asc" : "desc",
       };
+    } else {
+      qs = { ...qs, sortField: "", sortOrder: "" };
     }
+    console.log(filters);
+    
     navigate(
       stringifyUrl(
         { url: location.pathname, query: { ...qs, ...filters } },

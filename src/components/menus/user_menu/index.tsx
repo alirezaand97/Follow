@@ -1,11 +1,22 @@
-import React from 'react'
+import { IButton, IDropdown } from "@/components/general";
 
-type Props = {}
+import React from "react";
+import UserIcon from "@/components/icons/user";
+import UserMenuItems from "./menu_items";
 
-const index = (props: Props) => {
+type Props = {};
+
+const UserMenu = (props: Props) => {
   return (
-    <div>index</div>
-  )
-}
+    <IDropdown overlayClassName="w-60 mt-2" content={<UserMenuItems />}>
+      <IButton
+        type="text"
+        className="!p-1 lg:!p-3 mx-1.5 md:mx-2 group bg-gray-100"
+      >
+        <UserIcon />
+      </IButton>
+    </IDropdown>
+  );
+};
 
-export default index
+export default UserMenu;

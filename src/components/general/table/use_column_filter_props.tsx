@@ -4,6 +4,7 @@ import { Space, Tag } from "antd";
 import FilterIcon from "@/components/icons/filter";
 import IButton from "../button";
 import IInput from "../input";
+import { MdOutlineFilterAlt } from "react-icons/md";
 import SearchIcon from "@/components/icons/search";
 import { SortOrder } from "antd/es/table/interface";
 import { parse } from "query-string";
@@ -22,9 +23,9 @@ const useColumnFilterProps = () => {
     title?: string
   ): ColumnType<any> => ({
     filterIcon: (filtered: boolean) => (
-      <FilterIcon
-        className="w-5"
-        color={`${filterValues[dataIndex] ? "fill-primary-100" : undefined}`}
+      <MdOutlineFilterAlt
+        size={20}
+        color={`${filterValues[dataIndex] ? "fill-primary-200" : undefined}`}
       />
     ),
     className: `${filterValues[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,

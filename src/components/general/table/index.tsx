@@ -47,6 +47,7 @@ const ITable = <T extends object>({
         position: ["bottomRight"],
         ...pagination,
       }}
+      onChange={onChange}
       {...props}
     />
   );

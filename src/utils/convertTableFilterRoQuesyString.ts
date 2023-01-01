@@ -34,7 +34,6 @@ export const useConvertTableFilterRoQuesyString = () => {
       qs = { ...qs, sortField: "", sortOrder: "" };
     }
     console.log(filters);
-
     navigate(
       stringifyUrl(
         { url: location.pathname, query: { ...qs, ...filters } },

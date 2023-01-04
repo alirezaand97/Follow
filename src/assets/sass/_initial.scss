@@ -125,3 +125,8 @@ body {
     border-radius: 6px !important;
   }
 }
+
+.sidebar-item {
+  @apply hover:!bg-gray-100 group/child !mt-2 !text-right;
+}
+

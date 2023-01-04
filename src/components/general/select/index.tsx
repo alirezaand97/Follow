@@ -11,7 +11,7 @@ const ISelect = (props: Props) => {
 
   return (
     <Select
-      className="w-full "
+      className="w-full"
       clearIcon={<CloseIcon color="!fill-black" />}
       suffixIcon={<ArrowDown className="!w-4.5 !h-4.5 -mt-1 -ml-1.5" />}
       notFoundContent={

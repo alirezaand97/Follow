@@ -6,7 +6,7 @@ interface Props extends ButtonProps {}
 
 const IButton = ({ children, className, ...props }: Props) => {
   return (
-    <Button className={`px-4 h-auto   ${className}`} {...props}>
+    <Button className={`px-4   ${className}`} {...props}>
       {children}
     </Button>
   );

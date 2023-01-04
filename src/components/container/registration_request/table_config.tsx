@@ -174,7 +174,11 @@ const useTableConfig = () => {
       className: "flex justify-center",
       render(value, record, index) {
         return (
-          <IButton size="small" onClick={() => handleShowRequestDetail(record)}>
+          <IButton
+            size="small"
+            onClick={() => handleShowRequestDetail(record)}
+            className="border-blue-300 text-blue-300"
+          >
             عملیات
           </IButton>
         );

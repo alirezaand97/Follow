@@ -1,10 +1,12 @@
 import { Tabs, Tooltip } from "antd";
 
+import Documents from "./documents";
 import LibraryIcon from "@/components/icons/library";
 import React from "react";
 import RequestHistory from "./request-history";
 import ScheduleIcon from "@/components/icons/schedule";
 import { Tab } from "rc-tabs/lib/interface";
+import UserDocsIcon from "@/components/icons/user_docs";
 import UserIcon from "@/components/icons/user";
 import UserInfo from "./user-info";
 import Username from "./username";
@@ -40,6 +42,15 @@ const TabItems = (props: Props) => {
       ),
       key: "3",
       children: <Username />,
+    },
+    {
+      label: (
+        <Tooltip placement="left" title={t("general.userDocs")}>
+          <UserDocsIcon />
+        </Tooltip>
+      ),
+      key: "4",
+      children: <Documents />,
     },
   ];
   return (

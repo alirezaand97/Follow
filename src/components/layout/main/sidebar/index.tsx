@@ -1,20 +1,31 @@
+import { ChangeEvent, useState } from "react";
+import { Menu, MenuProps } from "antd";
 import { useAppDispatch, useAppSelector } from "@/store";
 
 import AgahLogo from "@/components/icons/logo";
 import AgahSign from "@/components/icons/agah_sign";
 import DoubleArrow from "@/components/icons/double_arrow";
 import FlowerIcon from "@/components/icons/flower";
-import { Menu } from "antd";
+import { IInput } from "@/components/general";
+import SearchIcon from "@/components/icons/search";
 import Sider from "antd/es/layout/Sider";
+import { pageNames } from "@/constant";
 import { theme } from "@/constant/theme";
 import { toggleCollapseSideBar } from "@/store/drawers";
+import useFilterMenu from "@/utils/filter_menu";
+import { useI18Next } from "@/i18n";
 import useMenuItems from "@/constant/menu_items";
 import { useNavigate } from "react-router-dom";
 
 const ISideBar = () => {
   const menuItems = useMenuItems();
+
+  const { t } = useI18Next();
+
   const navigate = useNavigate();
 
+  const [filterMenuList, setFilterMenuList] = useState<string>("");
+  const [filterMenu] = useFilterMenu();
   const dispatch = useAppDispatch();
 
   const collapsedDrawer = useAppSelector((s) => s.drawers.sideBar.collapsed);
@@ -22,6 +33,13 @@ const ISideBar = () => {
   const handleToggleSideBar = () => {
     dispatch(toggleCollapseSideBar());
   };
+
+  const handleFilterMenu = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilterMenuList(event.target.value);
+  };
+
+  console.log(filterMenu(filterMenuList, menuItems),menuItems);
+  
 
   return (
     <Sider
@@ -39,13 +57,24 @@ const ISideBar = () => {
         >
           <AgahLogo className=" w-24 px-1" />
         </div>
-        <Menu
-          mode="inline"
-          className="m-0 px-2 pt-8 !border-none"
-          selectedKeys={["3"]}
-          onClick={(info) => navigate(info.key)}
-          items={menuItems}
-        />
+        <div className="pt-8">
+          <div className="w-3/4 mx-auto mb-2">
+            <IInput
+              onChange={handleFilterMenu}
+              suffix={<SearchIcon className="w-4" />}
+              placeholder={t("general.search")}
+              allowClear
+            />
+          </div>
+          <Menu
+            mode="inline"
+            className="m-0 px-2  !border-none"
+            defaultOpenKeys={["registration"]}
+            defaultSelectedKeys={["2"]}
+            onClick={(info) => navigate(info.key)}
+            items={filterMenu(filterMenuList, menuItems)}
+          />
+        </div>
       </div>
       <div
         className="trigger flex absolute bottom-0 right-full -mr-4 mb-8  w-8 h-8 bg-primary-200/60 rounded-sm  justify-center items-center "

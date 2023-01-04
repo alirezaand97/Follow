@@ -7,13 +7,16 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { PickerProps } from "antd/es/date-picker/generatePicker";
 import fa_IR from "antd/lib/locale/fa_IR";
 
-const IJalaliDatePicker = (props: PickerProps<dayjs.Dayjs>) => {
+const IJalaliDatePicker = ({
+  className,
+  ...props
+}: PickerProps<dayjs.Dayjs>) => {
   dayjs.locale("fa");
 
   return (
     <ConfigProvider locale={fa_IR}>
       <JalaliLocaleListener />
-      <DatePicker {...props} />
+      <DatePicker className={`w-full ${className}`} {...props} />
     </ConfigProvider>
   );
 };

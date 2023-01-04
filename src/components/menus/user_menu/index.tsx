@@ -11,7 +11,7 @@ const UserMenu = (props: Props) => {
     <IDropdown overlayClassName="w-60 mt-2" content={<UserMenuItems />}>
       <IButton
         type="text"
-        className="!p-1 lg:!p-3 mx-1.5 md:mx-2 group bg-gray-100"
+        className="!p-1 lg:!p-3 mx-1.5 md:mx-2 group bg-gray-100 h-auto"
       >
         <UserIcon />
       </IButton>

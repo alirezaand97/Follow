@@ -166,5 +166,9 @@
   "LastUpdateDate": "تاریخ ویرایش",
   "followUpType": "روش پیگیری",
   "RecieveCustomerInfo": "دریافت اطلاعات مشتری",
-  "actions": "عملیات"
+  "actions": "عملیات",
+  "deleteFilters": "حذف فیلترها",
+  "toDate": "تا تاریخ",
+  "fromDate": "از تاریخ",
+  "userDocs": "مدارک هویتی"
 }

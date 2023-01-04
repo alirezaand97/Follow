@@ -41,10 +41,10 @@ const IHeader = (props: Props) => {
           </div>
           <div className="flex items-center flex-row-reverse">
             <UserMenu />
-            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 group">
+            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group">
               <NotificationIcon />
             </IButton>
-            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 group">
+            <IButton type="text" className="!p-1 lg:!p-2 mx-1.5 md:mx-2 h-auto group">
               <TicketIcon />
             </IButton>
           </div>

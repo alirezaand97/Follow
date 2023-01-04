@@ -31,6 +31,7 @@ const RegistrationRequestDetailDrawer = (props: Props) => {
 
   return (
     <IDrawer
+      destroyOnClose={true}
       open={isOpen}
       onClose={handleCloseDrawer}
       placement="left"

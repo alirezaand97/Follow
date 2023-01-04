@@ -10,13 +10,8 @@ const registrationRequest = serviceApi.injectEndpoints({
         params: { ...params },
       }),
     }),
-    getRegistrationRequest: build.query<
-      RegistrationRequestModel,
-      { CustomerId: number }
-    >({
+    getRegistrationRequestItem: build.query<any, { CustomerId: number }>({
       query: ({ CustomerId }) => {
-        console.log("CustomerId", `/registerationRequest/${CustomerId}`);
-
         return {
           method: "GET",
           url: `/registerationRequest/${CustomerId}`,
@@ -28,5 +23,5 @@ const registrationRequest = serviceApi.injectEndpoints({
 
 export const {
   useGetRegistrationRequestListQuery,
-  useGetRegistrationRequestQuery,
+  useGetRegistrationRequestItemQuery,
 } = registrationRequest;

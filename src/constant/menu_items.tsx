@@ -46,17 +46,6 @@ const useMenuItems = () => {
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
         },
-
-        {
-          key: "4",
-          title: "              شهرهای ترابر          ",
-          label: (
-            <span className="text-base group-hover/child:text-primary-200">
-              شهرهای ترابر
-            </span>
-          ),
-          className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
-        },
         {
           key: "5",
           title: "              تنظیمات شعب          ",

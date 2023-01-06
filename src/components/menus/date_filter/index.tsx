@@ -98,7 +98,7 @@ const DateFilterMenu = ({ filterdDateOptions, ...props }: Props) => {
               <IJalaliDatePicker
                 placeholder={t("general.fromDate")}
                 className="w-full"
-                value={
+                defaultValue={
                   isValidDate(qs?.fromDate as string)
                     ? dayjs(qs?.fromDate as string)
                     : undefined

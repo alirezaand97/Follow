@@ -57,7 +57,7 @@ const ISideBar = () => {
               <IInput
                 onChange={handleFilterMenu}
                 suffix={<SearchIcon className="w-4" />}
-                placeholder={t("general.search")}
+                placeholder={t("general.searchInMenu")}
                 allowClear
               />
             </div>

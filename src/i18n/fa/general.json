@@ -170,5 +170,6 @@
   "deleteFilters": "حذف فیلترها",
   "toDate": "تا تاریخ",
   "fromDate": "از تاریخ",
-  "userDocs": "مدارک هویتی"
+  "userDocs": "مدارک هویتی",
+  "searchInMenu":"جستجو در منو"
 }

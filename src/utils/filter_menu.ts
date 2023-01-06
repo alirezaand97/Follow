@@ -19,7 +19,7 @@ export const filterMenu = (search: string, menuList: any) => {
   const res = search
     ? filterRes?.length
       ? filterRes
-      : [{ label: t("general.notFound") }]
+      : [{ label: t("general.notFound"), disabled: true }]
     : menuList;
   return res;
 };

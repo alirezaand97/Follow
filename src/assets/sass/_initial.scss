@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  @apply font-yekanMedium;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+body {
+  @apply font-yekanMedium;
+}
+
+.iinput {
+  @apply bg-gray-100 focus:bg-gray-200;
+}
+.iscroll::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+  cursor: pointer;
+}
+
+.iscroll::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  cursor: pointer;
+}
+
+.ant-table-body::-webkit-scrollbar {
+  width: 4px;
+  cursor: pointer;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+}
+
+.ant-btn-primary {
+  @apply bg-primary-200;
+}
+
+.ant-table-cell {
+  @apply border-t border-dashed;
+}
+
+.itable-pagination {
+  .ant-pagination-item-active {
+    @apply bg-primary-200;
+    a {
+      @apply text-white hover:text-white;
+    }
+  }
+}
+
+.iresponsive-table {
+  .ant-table {
+    @apply overflow-auto iscroll;
+  }
+  .ant-table-row .ant-table-cell {
+    @apply border-t border-dashed;
+  }
+  .ant-table-thead .ant-table-cell {
+    @apply border-t-0 border-dashed bg-white;
+  }
+  .ant-table-thead .ant-table-cell::before {
+    @apply bg-gray-100/50;
+  }
+  .ant-table-cell {
+    @apply p-5;
+  }
+  .ant-table-cell-fix-left {
+    box-shadow: 1px 15px 15px #eee;
+  }
+}
+.ant-table-filter-dropdown {
+  padding: 0.325rem !important;
+  @apply shadow-sm  #{!important};
+}
+
+.idropdown-wrapper {
+  box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+  padding: 8px !important;
+  @apply bg-white rounded-md;
+  .ant-dropdown-menu {
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+}
+
+.ant-dropdown-menu-item:hover .ant-dropdown-menu-title-content {
+  @apply text-primary-200;
+}
+
+.iinput {
+  @apply placeholder:text-theme-placeholder placeholder:text-sm rounded-md focus:shadow-none;
+}
+
+.ant-form-item-label {
+  text-align: right !important;
+  padding: 0 !important;
+  label {
+    height: auto !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+.requests-table {
+  .ant-table-tbody .ant-table-cell {
+    @apply px-0.5;
+  }
+  .ant-table-thead .ant-table-cell {
+    @apply px-1.5;
+  }
+}
+
+.accordion-panel-header {
+  @apply my-2;
+  .ant-collapse-header {
+    @apply border border-gray-200;
+    border-radius: 6px !important;
+  }
+}
+
+.sidebar-item {
+  @apply hover:!bg-gray-100 group/child !mt-2 !text-right;
+}
+

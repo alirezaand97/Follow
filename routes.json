@@ -1,0 +1,3 @@
+{
+  "/registerationRequest/:CustomerId": "/registerationRequest?CustomerId=:CustomerId"
+}

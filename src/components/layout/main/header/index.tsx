@@ -12,6 +12,7 @@ type Props = {};
 
 const IHeader = (props: Props) => {
   const { t } = useI18Next();
+
   return (
     <Header
       className="site-layout-background !bg-white sticky top-0 z-10 w-full !px-0 shadow-header"

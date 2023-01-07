@@ -171,5 +171,10 @@
   "toDate": "تا تاریخ",
   "fromDate": "از تاریخ",
   "userDocs": "مدارک هویتی",
-  "searchInMenu":"جستجو در منو"
+  "searchInMenu": "جستجو در منو",
+  "registrationRequests": "درخواست های ثبت نام",
+  "branchSetting": "تنظیمات شعب",
+  "counterList": "لیست مراکز پیشخوان دولت",
+  "revenueOfAuthCenter": "عملکرد مراکز احراز هویت",
+  "registerationPanel": "پنل ثبت نام"
 }

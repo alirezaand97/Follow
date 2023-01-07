@@ -16,6 +16,8 @@ export const useConvertTableFilterRoQuesyString = () => {
     sorter: SorterResult<T> | SorterResult<T>[],
     extra: TableCurrentDataSource<T>
   ) => {
+    console.log(filters);
+
     if (Array.isArray(sorter)) return;
     if (pagination) {
       qs = {
@@ -34,6 +36,7 @@ export const useConvertTableFilterRoQuesyString = () => {
       qs = { ...qs, sortField: "", sortOrder: "" };
     }
     console.log(filters);
+
     navigate(
       stringifyUrl(
         { url: location.pathname, query: { ...qs, ...filters } },

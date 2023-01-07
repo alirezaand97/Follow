@@ -29,12 +29,12 @@ const App: React.FC = () => {
 
   return (
     <ICard className="px-8">
-      <DateFilterMenu
+      {/* <DateFilterMenu
         filterdDateOptions={[
           { label: t("general.CreationDate"), value: "CreationDate" },
           { label: t("general.LastUpdateDate"), value: "LastUpdateDate" },
         ]}
-      />
+      /> */}
       <ITable<RegistrationRequestModel>
         columns={tableColumn}
         dataSource={requestsList}

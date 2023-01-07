@@ -6,12 +6,14 @@ import { t } from "i18next";
 import toJalali from "@/utils/to_jalali";
 import { toggleRegisterRequestDetailDrawer } from "@/store/drawers";
 import { useAppDispatch } from "@/store";
+import useColumnDateFilter from "@/components/general/table/use_column_date_filter";
 import useColumnFilterProps from "@/components/general/table/use_column_filter_props";
 import useColumnSearchProps from "@/components/general/table/use_column_search_props";
 
 const useTableConfig = () => {
   const getColumnSearchProps = useColumnSearchProps();
   const getColumnFilterProps = useColumnFilterProps();
+  const getColumnDateProps = useColumnDateFilter();
 
   const dispatch = useAppDispatch();
 
@@ -127,6 +129,7 @@ const useTableConfig = () => {
       render(value, record, index) {
         return <span>{toJalali(value)}</span>;
       },
+      ...getColumnDateProps("CreationDate")
     },
     {
       title: t("general.LastUpdateDate"),

@@ -17,61 +17,51 @@ const useMenuItems = () => {
   return [
     {
       key: "registration",
-      title: "پنل ثبت نام",
+      title: t("general.registerationPanel"),
       icon: <UserIcon className="w-6" color="group-hover:fill-primary-200" />,
       label: (
         <span className="text-base group-hover:text-primary-200">
-          پنل ثبت نام
+          {t("general.registerationPanel")}
         </span>
       ),
       className: "group !mt-2 !text-right",
       children: [
         {
           key: pageNames.registrationRequest,
-          title: "درخواست های ثبت نام",
+          title: t("general.registrationRequests"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
-              درخواست های ثبت نام
+              {t("general.registrationRequests")}
             </span>
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right`,
         },
         {
-          key: "3",
-          title: "          تنظیمات انواع پیگیری",
-          label: (
-            <span className="text-base  group-hover/child:text-primary-200">
-              تنظیمات انواع پیگیری
-            </span>
-          ),
-          className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
-        },
-        {
           key: "5",
-          title: "              تنظیمات شعب          ",
+          title: t("general.branchSetting"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
-              تنظیمات شعب
+              {t("general.branchSetting")}{" "}
             </span>
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
         },
         {
           key: "6",
-          title: "              مراکز احراز هویت          ",
+          title: t("general.counterList"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
-              مراکز احراز هویت
+              {t("general.counterList")}{" "}
             </span>
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
         },
         {
           key: "7",
-          title: "              عملکرد دفاتر احراز هویت          ",
+          title: t("general.revenueOfAuthCenter"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
-              عملکرد دفاتر احراز هویت
+              {t("general.revenueOfAuthCenter")}{" "}
             </span>
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,

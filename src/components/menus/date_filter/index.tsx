@@ -73,7 +73,7 @@ const DateFilterMenu = ({ filterdDateOptions, ...props }: Props) => {
   };
 
   const clearAllFIlters = () => {
-    navigate(stringifyUrl({ url: location.pathname }));
+    navigate(location.pathname);
   };
 
   return (

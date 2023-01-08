@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
               token: {
                 fontFamily: "YekanBakhMedium ",
                 colorPrimary: "#0095e8",
-                colorPrimaryBgHover: "#edf9ff",
+                colorPrimaryBgHover: "#e7f3ff",
                 colorTextBase: "#5e6278",
                 borderRadius: 5,
                 colorBgLayout: "#f5f8fa",

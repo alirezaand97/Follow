@@ -13,7 +13,8 @@ import useColumnSearchProps from "@/components/general/table/use_column_search_p
 const useTableConfig = () => {
   const getColumnSearchProps = useColumnSearchProps();
   const getColumnFilterProps = useColumnFilterProps();
-  const getColumnDateProps = useColumnDateFilter();
+  const getCreateDateFilter = useColumnDateFilter("CreationDate");
+  const getLastUpdateFilter = useColumnDateFilter("LastUpdateDate");
 
   const dispatch = useAppDispatch();
 
@@ -129,7 +130,7 @@ const useTableConfig = () => {
       render(value, record, index) {
         return <span>{toJalali(value)}</span>;
       },
-      ...getColumnDateProps("CreationDate")
+      ...getCreateDateFilter("CreationDate"),
     },
     {
       title: t("general.LastUpdateDate"),
@@ -140,6 +141,7 @@ const useTableConfig = () => {
       render(value, record, index) {
         return <span>{toJalali(value)}</span>;
       },
+      ...getLastUpdateFilter("LastUpdateDate"),
     },
     {
       title: t("general.followUpType"),

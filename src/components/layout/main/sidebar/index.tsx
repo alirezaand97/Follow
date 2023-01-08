@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import AgahLogo from "@/components/icons/logo";
 import DoubleArrow from "@/components/icons/double_arrow";
@@ -13,10 +14,13 @@ import { theme } from "@/constant/theme";
 import { toggleCollapseSideBar } from "@/store/drawers";
 import { useI18Next } from "@/i18n";
 import useMenuItems from "@/constant/menu_items";
-import { useNavigate } from "react-router-dom";
 
 const ISideBar = () => {
   const menuItems = useMenuItems();
+
+  const { pathname } = useLocation();
+
+  const activeMenuItem = pathname.split("/")[1];
 
   const { t } = useI18Next();
 
@@ -65,8 +69,8 @@ const ISideBar = () => {
           <Menu
             mode="inline"
             className="m-0 px-2  !border-none"
-            defaultOpenKeys={["registration"]}
-            defaultSelectedKeys={["2"]}
+            defaultOpenKeys={[activeMenuItem]}
+            defaultSelectedKeys={[pathname]}
             onClick={(info) => navigate(info.key)}
             items={filterMenu(searchValue, menuItems)}
           />

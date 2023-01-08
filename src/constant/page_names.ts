@@ -1,10 +1,14 @@
 const pageNames = {
-  registrationRequest: "/RegistrationRequest",
   registration: {
-    requests: { title: "درخواست های ثبت نام", url: "registration/requests" },
+    registrationRequests: "/registration/registrationRequest",
+    branchSetting: "/registration/branchSetting",
+    counterList: "/registration/counterList",
+    revenueOfAuthCenter: "/registration/revenueOfAuthCenter",
   },
   home: "/",
-  login: "/auth/login",
+  auth: {
+    login: "/auth/login",
+  },
 };
 
 export default pageNames;

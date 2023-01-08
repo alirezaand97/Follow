@@ -1,20 +1,16 @@
 import { Col, Form, Row, message } from "antd";
-import { ColumnType, FilterConfirmProps } from "antd/lib/table/interface";
-import dayjs, { Dayjs } from "dayjs";
 import { parse, stringifyUrl } from "query-string";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import DateFilter from "./dateFilter1";
-import DateFilter1 from "./dateFilter1";
+import { FilterConfirmProps } from "antd/lib/table/interface";
 import FormItem from "../form_item";
 import IButton from "../button";
 import IJalaliDatePicker from "../date_picker";
-import { MdOutlineCalendarToday } from "react-icons/md";
+import dayjs from "dayjs";
 import { useI18Next } from "@/i18n";
 
 type Props = {};
-
 interface FormProps {
   fromDate: dayjs.Dayjs;
   toDate: dayjs.Dayjs;
@@ -22,7 +18,7 @@ interface FormProps {
   confirm: (param?: FilterConfirmProps) => void;
 }
 
-const useColumnDateFilter = (dataIndex: any) => {
+const DateFilter1 = () => {
   const { t } = useI18Next();
   const { search } = useLocation();
   let qs = parse(search) as any;
@@ -116,43 +112,65 @@ const useColumnDateFilter = (dataIndex: any) => {
     setDates({ ...dates, toDate: date });
   };
 
-  // console.log(dates, dataIndex);
+  console.log(dates);
 
-  const getColumnDateProps = (title?: string): ColumnType<any> => ({
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-      close,
-    }) => <DateFilter1 />,
-    className: `${qs[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,
-    filterIcon: (filtered: boolean) => (
-      <MdOutlineCalendarToday
-        size={16}
-        className={`${
-          qs?.filteredDate == dataIndex ? "fill-primary-200" : undefined
-        }`}
-      />
-    ),
-    defaultSortOrder:
-      qs["sortField"] == dataIndex && qs["sortOrder"]
-        ? qs["sortOrder"]
-        : undefined,
-    // onFilterDropdownOpenChange: (visible) => {
-    //   console.log(visible && dataIndex == qs?.filteredDate && qs?.toDate);
-
-    //   visible
-    //     ? setDates((d) => ({
-    //         ...d,
-    //         toDate: dayjs(qs?.toDate as string),
-    //         fromDate: dayjs(qs?.fromDate as string),
-    //       }))
-    //     : setDates((d) => ({ ...d, toDate: null, fromDate: null }));
-    // },
-  });
-
-  return getColumnDateProps;
+  if (!dates) return null;
+  return (
+    <div
+      style={{ padding: 8 }}
+      onKeyDown={(e) => e.stopPropagation()}
+      className="w-80"
+    >
+      {contextHolder}
+      <Form
+        layout="vertical"
+        onFinish={(values) => {
+          onFinish({ confirm, ...values });
+        }}
+        form={form}
+        autoComplete="off"
+      >
+        <Row className="mb-4" dir="rtl" gutter={8}>
+          <Col span={12}>
+            <FormItem name="fromDate" label={`${t("general.fromDate")}`}>
+              <IJalaliDatePicker
+                placeholder={`${t("general.fromDate")}`}
+                value={dayjs()}
+                onChange={handleChangeFromDate}
+              />
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem name="toDate" label={`${t("general.toDate")}`}>
+              <IJalaliDatePicker
+                placeholder={`${t("general.toDate")}`}
+                value={dates?.toDate}
+                defaultValue={dates?.toDate || undefined}
+                onChange={handleChangeToDate}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row className="flex-row-reverse" gutter={12}>
+          <Col>
+            <IButton size="small" htmlType="submit" style={{ width: 90 }}>
+              {t("general.search")}
+            </IButton>
+          </Col>
+          <Col>
+            <IButton
+              // onClick={() => clearFilters && handleReset(clearFilters, confirm)}
+              size="small"
+              style={{ width: 90 }}
+              danger
+            >
+              {t("general.deleteFilters")}
+            </IButton>
+          </Col>
+        </Row>
+      </Form>
+    </div>
+  );
 };
 
-export default useColumnDateFilter;
+export default DateFilter1;

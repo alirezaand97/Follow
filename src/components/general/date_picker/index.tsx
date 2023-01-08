@@ -9,9 +9,12 @@ import fa_IR from "antd/lib/locale/fa_IR";
 
 const IJalaliDatePicker = ({
   className,
+  value,
   ...props
 }: PickerProps<dayjs.Dayjs>) => {
   dayjs.locale("fa");
+
+  console.log(value, props.placeholder);
 
   return (
     <ConfigProvider locale={fa_IR}>

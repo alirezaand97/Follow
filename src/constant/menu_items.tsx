@@ -27,7 +27,7 @@ const useMenuItems = () => {
       className: "group !mt-2 !text-right",
       children: [
         {
-          key: pageNames.registrationRequest,
+          key: pageNames.registration.registrationRequests,
           title: t("general.registrationRequests"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
@@ -37,7 +37,17 @@ const useMenuItems = () => {
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right`,
         },
         {
-          key: "5",
+          key: pageNames.registration.revenueOfAuthCenter,
+          title: t("general.revenueOfAuthCenter"),
+          label: (
+            <span className="text-base group-hover/child:text-primary-200">
+              {t("general.revenueOfAuthCenter")}{" "}
+            </span>
+          ),
+          className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
+        },
+        {
+          key: pageNames.registration.branchSetting,
           title: t("general.branchSetting"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
@@ -47,21 +57,11 @@ const useMenuItems = () => {
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
         },
         {
-          key: "6",
+          key: pageNames.registration.counterList,
           title: t("general.counterList"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">
               {t("general.counterList")}{" "}
-            </span>
-          ),
-          className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
-        },
-        {
-          key: "7",
-          title: t("general.revenueOfAuthCenter"),
-          label: (
-            <span className="text-base group-hover/child:text-primary-200">
-              {t("general.revenueOfAuthCenter")}{" "}
             </span>
           ),
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,

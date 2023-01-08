@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { TableCurrentDataSource } from "antd/es/table/interface";
 import { TablePaginationConfig } from "antd";
+import { findKey } from "lodash";
+import { object } from "yup";
 
 export const useConvertTableFilterRoQuesyString = () => {
   const location = useLocation();
@@ -34,6 +36,21 @@ export const useConvertTableFilterRoQuesyString = () => {
       };
     } else {
       qs = { ...qs, sortField: "", sortOrder: "" };
+    }
+
+    findKey(filters, function (o) {
+      return o?.includes("date_");
+    });
+
+    let date = Object.keys(filters).find((i) => i.includes("date_")) as string;
+    if (filters[date]?.length > 1) {
+      filters = {
+        ...filters,
+        [date]: null,
+        filterDate: [date?.replace("date_", "")],
+        fromDate: [filters[date][0]],
+        toDate: [filters[date][1]],
+      };
     }
 
     navigate(

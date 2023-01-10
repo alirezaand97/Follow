@@ -31,11 +31,12 @@ export const useConvertTableFilterRoQuesyString = () => {
     if (sorter.order) {
       qs = {
         ...qs,
-        _sort: sorter.field?.toString() || "",
-        _order: sorter.order == "ascend" ? "asc" : "desc",
+        sort: sorter.field?.toString() || "",
+        // _order: sorter.order == "ascend" ? "asc" : "desc",
+        order: sorter.order,
       };
     } else {
-      qs = { ...qs, sortField: "", sortOrder: "" };
+      qs = { ...qs, sort: "", order: "" };
     }
 
     findKey(filters, function (o) {

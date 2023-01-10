@@ -7,6 +7,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:serve": "tsc && vite build && serve -s dist",
     "preview": "vite preview",
     "server": "json-server --watch db.json --port 5151"
   },
@@ -28,6 +29,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.0.0",
     "react-icons": "^4.7.1",
+    "react-multi-date-picker": "^3.3.4",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "redux-persist": "^6.0.0",

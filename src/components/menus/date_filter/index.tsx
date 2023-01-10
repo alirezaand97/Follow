@@ -98,25 +98,13 @@ const DateFilterMenu = ({ filterdDateOptions, ...props }: Props) => {
               <IJalaliDatePicker
                 placeholder={t("general.fromDate")}
                 className="w-full"
-                defaultValue={
-                  isValidDate(qs?.fromDate as string)
-                    ? dayjs(qs?.fromDate as string)
-                    : undefined
-                }
               />
             </FormItem>
           </Col>
 
           <Col sm={6} md={4} xl={3}>
             <FormItem name="toDate">
-              <IJalaliDatePicker
-                placeholder={t("general.toDate")}
-                defaultValue={
-                  isValidDate(qs?.toDate as string)
-                    ? dayjs(qs?.toDate as string)
-                    : undefined
-                }
-              />
+              <IJalaliDatePicker placeholder={t("general.toDate")} />
             </FormItem>
           </Col>
           {props.extraFilter}

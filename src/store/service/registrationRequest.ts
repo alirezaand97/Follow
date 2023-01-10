@@ -1,4 +1,4 @@
-import { RegistrationRequestModel } from "@/models/registration_request.model";
+import { RegistrationRequestModel } from "@/models/registration.model";
 import serviceApi from ".";
 
 const registrationRequest = serviceApi.injectEndpoints({

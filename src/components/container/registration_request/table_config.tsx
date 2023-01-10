@@ -1,6 +1,6 @@
 import { ColumnsType } from "antd/es/table";
 import { IButton } from "@/components/general";
-import { RegistrationRequestModel } from "@/models/registration_request.model";
+import { RegistrationRequestModel } from "@/models/registration.model";
 import { Tag } from "antd";
 import { t } from "i18next";
 import toJalali from "@/utils/to_jalali";
@@ -9,12 +9,14 @@ import { useAppDispatch } from "@/store";
 import useColumnDateFilter from "@/components/general/table/use_column_date_filter";
 import useColumnFilterProps from "@/components/general/table/use_column_filter_props";
 import useColumnSearchProps from "@/components/general/table/use_column_search_props";
+import useSorter from "@/components/general/table/use_sorter";
 
 const useTableConfig = () => {
   const getColumnSearchProps = useColumnSearchProps();
   const getColumnFilterProps = useColumnFilterProps();
-  const getColumnDateProps = useColumnDateFilter();
-
+  const CreationDateProps = useColumnDateFilter("CreationDate");
+  const LastUpdateDateProps = useColumnDateFilter("LastUpdateDate");
+  const getColumnSortProps = useSorter();
   const dispatch = useAppDispatch();
 
   const handleShowRequestDetail = (record: RegistrationRequestModel) => {
@@ -34,9 +36,7 @@ const useTableConfig = () => {
       width: 140,
       ellipsis: true,
       ...getColumnSearchProps("CustomerId"),
-      sorter: true,
-      sortDirections: ["descend", "ascend"],
-      showSorterTooltip: true,
+      ...getColumnSortProps("CustomerId"),
     },
     {
       title: t("general.FirstName"),
@@ -45,9 +45,7 @@ const useTableConfig = () => {
       width: 120,
       ellipsis: true,
       ...getColumnSearchProps("FirstName"),
-      sorter: true,
-      sortDirections: ["descend", "ascend"],
-      showSorterTooltip: true,
+      ...getColumnSortProps("FirstName"),
     },
     {
       title: t("general.LastName"),
@@ -56,9 +54,7 @@ const useTableConfig = () => {
       width: 160,
       ellipsis: true,
       ...getColumnSearchProps("LastName"),
-      sorter: true,
-      sortDirections: ["descend", "ascend"],
-      showSorterTooltip: true,
+      ...getColumnSortProps("LastName"),
     },
     {
       title: t("general.CellPhone"),
@@ -107,9 +103,7 @@ const useTableConfig = () => {
       key: "FatherName",
       width: 160,
       ellipsis: true,
-      sorter: true,
-      sortDirections: ["descend", "ascend"],
-      showSorterTooltip: true,
+      ...getColumnSortProps("FatherName"),
       ...getColumnSearchProps("FatherName"),
     },
     {
@@ -129,7 +123,8 @@ const useTableConfig = () => {
       render(value, record, index) {
         return <span>{toJalali(value)}</span>;
       },
-      ...getColumnDateProps("CreationDate"),
+      ...CreationDateProps(),
+      ...getColumnSortProps("CreationDate"),
     },
     {
       title: t("general.date_LastUpdateDate"),
@@ -140,7 +135,8 @@ const useTableConfig = () => {
       render(value, record, index) {
         return <span>{toJalali(value)}</span>;
       },
-      ...getColumnDateProps("date_LastUpdateDate"),
+      ...LastUpdateDateProps(),
+      ...getColumnSortProps("LastUpdateDate"),
     },
     {
       title: t("general.followUpType"),

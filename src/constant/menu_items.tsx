@@ -37,7 +37,7 @@ const useMenuItems = () => {
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right`,
         },
         {
-          key: pageNames.registration.revenueOfAuthCenter,
+          key: pageNames.registration.AuthCenterOperational,
           title: t("general.revenueOfAuthCenter"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">

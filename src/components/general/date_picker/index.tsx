@@ -1,26 +1,32 @@
 import * as dayjs from "dayjs";
 
-import { ConfigProvider, DatePicker } from "antd";
-import { JalaliLocaleListener, DatePicker as JalaliPicker } from "antd-jalali";
+import DatePicker, {
+  CalendarProps,
+  DateObject,
+  DatePickerProps,
+} from "react-multi-date-picker";
 
-import { MdOutlineDateRange } from "react-icons/md";
+import PersianDigitReplacer from "@/utils/persianDigitReplacer";
 import { PickerProps } from "antd/es/date-picker/generatePicker";
-import fa_IR from "antd/lib/locale/fa_IR";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 
-const IJalaliDatePicker = ({
-  className,
-  value,
-  ...props
-}: PickerProps<dayjs.Dayjs>) => {
-  dayjs.locale("fa");
+const IJalaliDatePicker = (props: CalendarProps & DatePickerProps) => {
 
-  console.log(value, props.placeholder);
 
   return (
-    <ConfigProvider locale={fa_IR}>
-      <JalaliLocaleListener />
-      <DatePicker className={`w-full ${className}`} {...props} />
-    </ConfigProvider>
+    <DatePicker
+      calendar={persian}
+      locale={persian_fa}
+      arrow={false}
+      inputClass="text-sm w-full border border-gray-200 px-2 py-1.5 rounded-md outline-none"
+      containerClassName="w-full"
+      className="i-rmdp"
+      calendarPosition="bottom-end"
+      showOtherDays={true}
+      format="YYYY-MM-DD"
+      {...props}
+    />
   );
 };
 

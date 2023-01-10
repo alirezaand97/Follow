@@ -25,7 +25,7 @@ const UserInfo = (props: Props) => {
 
   if (!requestData) return null;
   return (
-    <div className="max-h-full overflow-auto">
+    <div>
       <Collapse
         destroyInactivePanel={true}
         accordion

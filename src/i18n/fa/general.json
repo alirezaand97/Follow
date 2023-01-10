@@ -176,5 +176,18 @@
   "branchSetting": "تنظیمات شعب",
   "counterList": "لیست مراکز پیشخوان دولت",
   "revenueOfAuthCenter": "عملکرد مراکز احراز هویت",
-  "registerationPanel": "پنل ثبت نام"
+  "registerationPanel": "پنل ثبت نام",
+  "OfficeCode": "کد مرکز احراز",
+  "CustomerTitle": "عنوان",
+  "ResultStateTitle": "نتیجه پیگیری",
+  "CategoryTitle": "نوع مرکز احراز",
+  "ReturnFromBrokerSubmitDate": "تاریخ بازگشت از کارگزاری",
+  "SendToBrokerSubmitDate": "تاریخ ارسال مرکز احراز",
+  "SubmitDate": "تاریخ تایید مرکز احراز",
+  "ApprovePishkhanSubmitDate": "تاریخ تایید مرکز احراز",
+  "AuthenticatedSubmitDate": "تاریخ احراز هویت",
+  "IsClosed": "باز-بسته",
+  "CityTitle": "شهر دفتر پیشخوان",
+  "PostalBarcode": "بارکد پستی",
+  "ReasonDescription": "شرح بازگشت"
 }

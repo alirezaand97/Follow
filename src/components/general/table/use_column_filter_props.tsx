@@ -30,7 +30,7 @@ const useColumnFilterProps = () => {
     ),
     className: `${filterValues[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,
     filterSearch: true,
-    defaultFilteredValue: filterValues[dataIndex],
+    filteredValue: filterValues[dataIndex],
     defaultSortOrder:
       filterValues["sortField"] == dataIndex && filterValues["sortOrder"]
         ? filterValues["sortOrder"]

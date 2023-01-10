@@ -44,7 +44,7 @@ const useColumnSearchProps = () => {
         )}
       </div>
     ),
-    defaultFilteredValue: [searchValues[dataIndex]],
+    filteredValue: [searchValues[dataIndex]],
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,

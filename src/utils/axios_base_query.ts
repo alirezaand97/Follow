@@ -33,10 +33,10 @@ axiosInstance.interceptors.response.use(
 
     if (error.response.status === 401) {
       localStorage.clear();
-      location.href = pageNames.login;
+      location.href = pageNames.auth.login;
     }
 
-    if (error.response.status === 403) location.href = pageNames.login;
+    if (error.response.status === 403) location.href = pageNames.auth.login;
 
     return Promise.reject(error);
   }

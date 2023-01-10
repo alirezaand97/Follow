@@ -1,10 +1,12 @@
-import { MainLayout } from "@/components/layout";
-import React from "react";
+import { MainLayout } from '@/components/layout'
+import React from 'react'
 
-type Props = {};
+type Props = {}
 
-const Home = (props: Props) => {
-  return <MainLayout>Home</MainLayout>;
-};
+const index = (props: Props) => {
+  return (
+    <MainLayout>index</MainLayout>
+  )
+}
 
-export default Home;
+export default index

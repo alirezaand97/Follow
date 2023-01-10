@@ -1,58 +1,72 @@
 .requests-table {
-    .ant-table-tbody .ant-table-cell {
-      @apply px-0.5;
-    }
-    .ant-table-thead .ant-table-cell {
-      @apply px-1.5;
-    }
+  .ant-table-tbody .ant-table-cell {
+    @apply px-0.5;
   }
+  .ant-table-thead .ant-table-cell {
+    @apply px-1.5;
+  }
+}
 
-  
 .iresponsive-table {
-    .ant-table {
-      @apply overflow-auto iscroll;
-    }
-    .ant-table-row .ant-table-cell {
-      @apply border-t border-dashed;
-    }
-    .ant-table-thead .ant-table-cell {
-      @apply border-t-0 border-dashed bg-white;
-    }
-    .ant-table-thead .ant-table-cell::before {
-      @apply bg-gray-100/50;
-    }
-    .ant-table-cell {
-      @apply p-5;
-    }
-    .ant-table-cell-fix-left {
-      box-shadow: 1px 15px 15px #eee;
-    }
+  .ant-table {
+    @apply overflow-auto iscroll;
   }
-  .ant-table-filter-dropdown {
-    padding: 0.325rem !important;
-    @apply shadow-sm  #{!important};
-  }
-
-  
-.ant-table-cell {
+  .ant-table-row .ant-table-cell {
     @apply border-t border-dashed;
   }
-  
-  .itable-pagination {
-    .ant-pagination-item-active {
-      @apply bg-primary-200;
-      a {
-        @apply text-white hover:text-white;
-      }
+  .ant-table-thead .ant-table-cell {
+    @apply border-t-0 border-dashed bg-white;
+  }
+  .ant-table-thead .ant-table-cell::before {
+    @apply bg-gray-100/50;
+  }
+  .ant-table-cell {
+    @apply p-5;
+  }
+  .ant-table-cell-fix-left {
+    box-shadow: 1px 15px 15px #eee;
+  }
+}
+.ant-table-filter-dropdown {
+  padding: 0.325rem !important;
+  @apply shadow-sm  #{!important};
+}
+
+.ant-table-cell {
+  @apply border-t border-dashed;
+}
+
+.itable-pagination {
+  .ant-pagination-item-active {
+    @apply bg-primary-200;
+    a {
+      @apply text-white hover:text-white;
     }
   }
+}
 
-  
 .ant-table-body::-webkit-scrollbar {
-    width: 4px;
-    cursor: pointer;
-  }
-  
-  .ant-table-body::-webkit-scrollbar-thumb {
-    background: #cbd5e0;
-  }
+  width: 4px;
+  cursor: pointer;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+}
+
+.ant-table-container::after,
+.ant-table-container::before {
+  box-shadow: none !important;
+}
+
+.ant-table-content::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+  cursor: pointer;
+  background-color: rgb(252, 252, 252);
+}
+
+.ant-table-content::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  cursor: pointer;
+}

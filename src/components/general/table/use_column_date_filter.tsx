@@ -1,119 +1,189 @@
+import { Col, Row, message } from "antd";
 import { ColumnType, FilterConfirmProps } from "antd/lib/table/interface";
-import { Space, Tag } from "antd";
-import { json, useLocation } from "react-router-dom";
+import { parse, stringifyUrl } from "query-string";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import FilterIcon from "@/components/icons/filter";
+import { DateObject } from "react-multi-date-picker";
 import IButton from "../button";
-import IInput from "../input";
 import IJalaliDatePicker from "../date_picker";
-import { MdDateRange } from "react-icons/md";
-import SearchIcon from "@/components/icons/search";
-import dayjs from "dayjs";
-import { parse } from "query-string";
+import { MdOutlineCalendarToday } from "react-icons/md";
+import PersianDigitReplacer from "@/utils/persianDigitReplacer";
+import type { Value } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import { useI18Next } from "@/i18n";
-import { useState } from "react";
 
 type Props = {};
 
-const useColumnSearchProps = () => {
+interface FormProps {
+  filteredDate: string;
+  confirm: (param?: FilterConfirmProps) => void;
+}
+
+const useColumnDateFilter = (dataindex: string) => {
   const { t } = useI18Next();
   const { search } = useLocation();
-  const searchValues = parse(search) as any;
 
-  const handleSearch = (
-    selectedKeys: string[],
-    confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: any
-  ) => {
+  let qs = parse(search) as any;
+
+  const now = new DateObject({
+    calendar: persian,
+    locale: persian_fa,
+  });
+
+  const navigate = useNavigate();
+
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const [dates, setDates] = useState<{
+    toDate: Value;
+    fromDate: Value;
+  }>({ toDate: now, fromDate: now });
+
+  useEffect(() => {
+    (qs?.toDate || qs?.fromDate) &&
+      setDates({
+        ...dates,
+        toDate:
+          dataindex == qs?.filteredDate
+            ? new DateObject({
+                date: qs?.toDate,
+                calendar: persian,
+                locale: persian_fa,
+              })
+            : now,
+        fromDate:
+          dataindex == qs?.filteredDate
+            ? new DateObject({
+                date: qs?.fromDate,
+                calendar: persian,
+                locale: persian_fa,
+              })
+            : now,
+      });
+  }, [qs?.toDate, qs?.fromDate]);
+
+  const handleReset = (confirm: (param?: FilterConfirmProps) => void) => {
+    qs = {
+      ...qs,
+      toDate: null,
+      fromDate: null,
+      filteredDate: null,
+    };
+
+    setDates({ ...dates, toDate: now, fromDate: now });
+
+    navigate(
+      stringifyUrl(
+        { url: location.pathname, query: { ...qs } },
+        { skipNull: true, skipEmptyString: true }
+      )
+    );
+
     confirm();
   };
 
-  const handleReset = (
-    clearFilters: () => void,
-    confirm: (param?: FilterConfirmProps) => void
-  ) => {
-    clearFilters();
+  const onFinish = ({ confirm, filteredDate }: FormProps) => {
+    qs = {
+      ...qs,
+      toDate: dates.toDate
+        ? PersianDigitReplacer(
+            (dates.toDate as DateObject).format("YYYY-MM-DD")
+          )
+        : null,
+      fromDate: dates.fromDate
+        ? PersianDigitReplacer(
+            (dates.fromDate as DateObject).format("YYYY-MM-DD")
+          )
+        : null,
+      filteredDate,
+    };
+
+    navigate(
+      stringifyUrl(
+        { url: location.pathname, query: { ...qs } },
+        { skipNull: true, skipEmptyString: true }
+      )
+    );
     confirm();
   };
 
-  console.log([searchValues["fromDate"], searchValues["toDate"]]);
+  const handleChangeFromDate = (date: Value) => {
+    setDates((d) => ({ ...d, fromDate: date }));
+  };
 
-  const getColumnDateProps = (
-    dataIndex: any,
-    title?: string
-  ): ColumnType<any> => ({
-    title: (
-      <div className=" w-full flex justify-between">
-        <div>{t(`general.${dataIndex}`)}</div>
-        {searchValues[dataIndex] && (
-          <Tag color="default">{searchValues[dataIndex]}</Tag>
-        )}
-      </div>
-    ),
-    defaultFilteredValue: [searchValues["fromDate"], searchValues["toDate"]],
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-      close,
-    }) => (
+  const handleChangeToDate = (date: Value) => {
+    setDates((d) => ({ ...d, toDate: date }));
+  };
+
+  const getColumnDateProps = (): ColumnType<any> => ({
+    filterDropdown: ({ confirm }) => (
       <div
         style={{ padding: 8 }}
         onKeyDown={(e) => e.stopPropagation()}
-        className="w-60"
+        className="w-80"
       >
-        <IJalaliDatePicker
-          placeholder={`${t("general.fromDate")}`}
-          defaultValue={dayjs(selectedKeys[0])}
-          onChange={(date) =>
-            setSelectedKeys(date ? [date.format("YYYY-MM-DD")] : [])
-          }
-        />
-        <IJalaliDatePicker
-          placeholder={`${t("general.fromDate")}`}
-          defaultValue={dayjs(selectedKeys[1])}
-          onChange={(date) =>
-            setSelectedKeys(
-              date ? [selectedKeys[0], date.format("YYYY-MM-DD")] : []
-            )
-          }
-        />
-        <Space>
-          <IButton
-            onClick={() =>
-              handleSearch(selectedKeys as string[], confirm, dataIndex)
-            }
-            size="small"
-            style={{ width: 90 }}
-          >
-            {t("general.search")}
-          </IButton>
-          <IButton
-            onClick={() => clearFilters && handleReset(clearFilters, confirm)}
-            size="small"
-            style={{ width: 90 }}
-            danger
-          >
-            حذف فیلتر
-          </IButton>
-        </Space>
+        {contextHolder}
+
+        <Row className="mb-4" dir="rtl" gutter={8}>
+          <Col span={12}>
+            <IJalaliDatePicker
+              placeholder={`${t("general.fromDate")}`}
+              value={dates.fromDate}
+              onChange={handleChangeFromDate}
+            />
+          </Col>
+          <Col span={12}>
+            <IJalaliDatePicker
+              placeholder={`${t("general.toDate")}`}
+              value={dates?.toDate}
+              onChange={handleChangeToDate}
+            />
+          </Col>
+        </Row>
+        <Row className="flex-row-reverse" gutter={12}>
+          <Col>
+            <IButton
+              size="small"
+              htmlType="submit"
+              style={{ width: 90 }}
+              onClick={() =>
+                onFinish({ confirm: confirm, filteredDate: dataindex })
+              }
+            >
+              {t("general.search")}
+            </IButton>
+          </Col>
+          <Col>
+            <IButton
+              onClick={() => handleReset(confirm)}
+              size="small"
+              style={{ width: 90 }}
+              danger
+            >
+              {t("general.deleteFilters")}
+            </IButton>
+          </Col>
+        </Row>
       </div>
     ),
-    className: `${searchValues[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,
+    className: `${qs[dataindex] ? "bg-gray-100/60 font-bold" : ""}`,
     filterIcon: (filtered: boolean) => (
-      <MdDateRange
-        size={18}
-        color={`${searchValues[dataIndex] ? "fill-primary-200" : undefined}`}
+      <MdOutlineCalendarToday
+        size={16}
+        className={`${
+          qs?.filteredDate == dataindex ? "fill-sky-600" : undefined
+        }`}
       />
     ),
     defaultSortOrder:
-      searchValues["sortField"] == dataIndex && searchValues["sortOrder"]
-        ? searchValues["sortOrder"]
+      qs["sortField"] == dataindex && qs["sortOrder"]
+        ? qs["sortOrder"]
         : undefined,
   });
 
   return getColumnDateProps;
 };
 
-export default useColumnSearchProps;
+export default useColumnDateFilter;

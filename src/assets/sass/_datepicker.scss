@@ -1,0 +1,29 @@
+.i-rmdp {
+  box-shadow: 0 0.1rem 0.75rem 0.25rem rgba(0, 0, 0, 0.05) !important;
+  .rmdp-day-picker {
+    .rmdp-day {
+      @apply text-gray-700;
+      span {
+        @apply rounded-md w-7 h-7;
+      }
+    }
+    .rmdp-deactive {
+      @apply text-gray-400;
+    }
+  }
+  .rmdp-month-picker,
+  .rmdp-year-picker {
+    .rmdp-day span {
+      @apply text-gray-700 rounded-md;
+    }
+    .rmdp-day span:hover {
+      @apply bg-transparent;
+    }
+  }
+  .rmdp-arrow-container {
+    @apply shadow-none rounded-md;
+  }
+  .rmdp-toolbar div {
+    @apply last:bg-transparent last:text-red-500 hover:shadow-none;
+  }
+}

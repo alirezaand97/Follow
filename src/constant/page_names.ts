@@ -2,8 +2,8 @@ const pageNames = {
   registration: {
     registrationRequests: "/registration/registrationRequest",
     branchSetting: "/registration/branchSetting",
-    counterList: "/registration/counterList",
-    revenueOfAuthCenter: "/registration/revenueOfAuthCenter",
+    counterList: "/registration/pishkhanList",
+    AuthCenterOperational: "/registration/AuthCenterOperational",
   },
   home: "/",
   auth: {

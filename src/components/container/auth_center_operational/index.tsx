@@ -24,24 +24,25 @@ const AuthCenterOperationalTable: React.FC = () => {
     sortField: string;
   };
 
-  const { data: requestsList, isFetching: isLoadingRequestList } =
+  const { data: authCenterList, isFetching: isLoading } =
     useGetAuthCenterOperationalReportQuery({
       ...searchPaeams,
     });
 
   const tableColumn = useTableConfig();
 
+
   return (
-    <ICard className="px-8">
+    <ICard className="px-8 ">
       <ITable<AuthCenterOperationalModel>
         columns={tableColumn}
-        dataSource={requestsList}
-        loading={isLoadingRequestList}
+        dataSource={authCenterList?.data}
+        loading={isLoading}
         className="iresponsive-table"
         pagination={{
-          total: 70,
+          total: authCenterList?.totalCount,
         }}
-        scroll={{ x: true }}
+        scroll={{ x: true, scrollToFirstRowOnChange: true }}
       />
     </ICard>
   );

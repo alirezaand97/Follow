@@ -1,8 +1,9 @@
+import { SortOrder, TableRowSelection } from "antd/lib/table/interface";
+
 import ICard from "@/components/general/card";
 import { ITable } from "@/components/general";
 import React from "react";
 import { RegistrationRequestModel } from "@/models/registration.model";
-import { SortOrder } from "antd/lib/table/interface";
 import { parse } from "query-string";
 import { useGetRegistrationRequestListQuery } from "@/store/service/registrationRequest";
 import { useI18Next } from "@/i18n";
@@ -23,17 +24,19 @@ const RegistrationRequestsTable: React.FC = () => {
       ...searchPaeams,
     });
 
+  console.log(requestsList);
+
   const tableColumn = useTableConfig();
 
   return (
     <ICard className="px-8">
       <ITable<RegistrationRequestModel>
         columns={tableColumn}
-        dataSource={requestsList}
+        dataSource={requestsList?.data}
         loading={isLoadingRequestList}
         className="iresponsive-table"
         pagination={{
-          total: 70,
+          total: requestsList?.totalCount,
         }}
         scroll={{ x: true }}
       />

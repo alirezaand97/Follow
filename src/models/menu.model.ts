@@ -1,4 +1,4 @@
-interface MenuModel {
+export interface MenuModel {
   label: string;
   link?: string;
   children?: {
@@ -7,4 +7,7 @@ interface MenuModel {
   }[];
 }
 
-export default MenuModel;
+export interface OptionModel {
+  label: string;
+  value: string | number;
+}

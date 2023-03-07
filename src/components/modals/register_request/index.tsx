@@ -6,7 +6,7 @@ import BookOpenIcon from "@/components/icons/book_open";
 import LibraryIcon from "@/components/icons/library";
 import React from "react";
 import ScheduleIcon from "@/components/icons/schedule";
-import TabItems from "./tabs/tab-items";
+import TabItems from "./tabs/tab_items";
 import UserIcon from "@/components/icons/user";
 import { theme } from "@/constant/theme";
 import { toggleRegisterRequestDetailDrawer } from "@/store/drawers";

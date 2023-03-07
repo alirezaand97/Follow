@@ -57,7 +57,7 @@ const useMenuItems = () => {
           className: `hover:!bg-gray-100 group/child !mt-2 !text-right `,
         },
         {
-          key: pageNames.registration.counterList,
+          key: pageNames.registration.pishkhanList,
           title: t("general.counterList"),
           label: (
             <span className="text-base group-hover/child:text-primary-200">

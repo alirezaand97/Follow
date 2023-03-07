@@ -1,6 +1,7 @@
 import { AuthCenterOperationalModel } from "@/models/registration.model";
 import { ColumnsType } from "antd/es/table";
-import { Tag } from "antd";
+import { MdOutlineCheck } from "react-icons/md";
+import RowNumber from "@/components/general/table/row_number";
 import { t } from "i18next";
 import toJalali from "@/utils/to_jalali";
 import useColumnDateFilter from "@/components/general/table/use_column_date_filter";
@@ -11,64 +12,72 @@ import useSorter from "@/components/general/table/use_sorter";
 const useTableConfig = () => {
   const getColumnSearchProps = useColumnSearchProps();
   const getColumnFilterProps = useColumnFilterProps();
-  const ReturnFromBrokerSubmitDateProps = useColumnDateFilter(
-    "ReturnFromBrokerSubmitDate"
-  );
-  const SendToBrokerSubmitDateProps = useColumnDateFilter(
-    "SendToBrokerSubmitDate"
-  );
-  const SubmitDateProps = useColumnDateFilter("SubmitDate");
-
-  const ApprovePishkhanSubmitDateProps = useColumnDateFilter(
-    "ApprovePishkhanSubmitDate"
-  );
-  const AuthenticatedSubmitDateProps = useColumnDateFilter(
-    "AuthenticatedSubmitDate"
-  );
+  const getColumnDateProps = useColumnDateFilter();
 
   const getColumnSortProps = useSorter();
 
+  // createDate: string;
+  // identificationCode: number; *
+  // fullName: string; *
+  // nationalCode: string; *
+  // customerCcmsCode: number;
+  // cellPhone: string; *
+  // status: string;
+  // categoryType: string;
+  // city: string; *
+  // province: string;
+  // customerAuthenticated: string; *
+  // returnFromBroker: string; *
+  // sendToBroker: string; *
+  // approveByOfficer: string; *
+
   const columns: ColumnsType<AuthCenterOperationalModel> = [
+    {
+      title: t("general.row"),
+      width: 120,
+      ellipsis: true,
+      render: (value, item, index) => <RowNumber index={index} />,
+    },
     {
       title: t("general.OfficeCode"),
       width: 120,
       ellipsis: true,
-      dataIndex: "OfficeCode",
-      key: "OfficeCode",
-      ...getColumnSearchProps("OfficeCode"),
+      dataIndex: "identificationCode",
+      key: "identificationCode",
+      ...getColumnSearchProps("identificationCode"),
     },
     {
       title: t("general.CustomerTitle"),
       width: 180,
       ellipsis: true,
-      dataIndex: "CustomerTitle",
-      key: "CustomerTitle",
-      ...getColumnSearchProps("CustomerTitle"),
-      ...getColumnSortProps("CustomerTitle"),
+      dataIndex: "fullName",
+      key: "fullName",
+      ...getColumnSearchProps("fullName"),
+      ...getColumnSortProps("fullName"),
     },
     {
-      title: t("general.CellPhone"),
+      title: t("general.telephone"),
       width: 140,
       ellipsis: true,
-      dataIndex: "CellPhone",
-      key: "CellPhone",
-      ...getColumnSearchProps("CellPhone"),
+      dataIndex: "cellPhone",
+      key: "cellPhone",
+      ...getColumnSearchProps("cellPhone", t("general.telephone")),
     },
     {
       title: t("general.NationalCode"),
       width: 120,
       ellipsis: true,
-      dataIndex: "NationalCode",
-      key: "NationalCode",
-      ...getColumnSearchProps("NationalCode"),
+      dataIndex: "nationalCode",
+      key: "nationalCode",
+      ...getColumnSearchProps("nationalCode"),
     },
     {
-      title: t("general.ResultStateTitle"),
+      title: t("general.status"),
       width: 180,
       ellipsis: true,
-      dataIndex: "ResultStateTitle",
-      key: "ResultStateTitle",
-      ...getColumnFilterProps("ResultStateTitle"),
+      dataIndex: "status",
+      key: "status",
+      ...getColumnFilterProps("status"),
       filters: [],
       render: (value) => (
         <p className="text-left flex" dir="ltr">
@@ -77,42 +86,42 @@ const useTableConfig = () => {
       ),
     },
     {
-      title: t("general.CategoryTitle"),
+      title: t("general.categoryTitle"),
       width: 180,
       ellipsis: true,
-      dataIndex: "CategoryTitle",
-      key: "CategoryTitle",
-      ...getColumnFilterProps("CategoryTitle"),
+      dataIndex: "categoryType",
+      key: "categoryType",
+      ...getColumnFilterProps("categoryType"),
       filters: [],
     },
 
     {
       title: t("general.ReturnFromBrokerSubmitDate"),
-      ...ReturnFromBrokerSubmitDateProps(),
-      ...getColumnSortProps("ReturnFromBrokerSubmitDate"),
+      ...getColumnDateProps("returnFromBroker"),
+      ...getColumnSortProps("returnFromBroker"),
       width: 170,
       ellipsis: true,
-      dataIndex: "ReturnFromBrokerSubmitDate",
-      key: "ReturnFromBrokerSubmitDate",
+      dataIndex: "returnFromBroker",
+      key: "returnFromBroker",
       render(value) {
         return <span>{toJalali(value)}</span>;
       },
     },
     {
       title: t("general.SendToBrokerSubmitDate"),
-      ...SendToBrokerSubmitDateProps(),
-      ...getColumnSortProps("SendToBrokerSubmitDate"),
+      ...getColumnDateProps("sendToBroker"),
+      ...getColumnSortProps("sendToBroker"),
       width: 170,
       ellipsis: true,
-      dataIndex: " SendToBrokerSubmitDate",
-      key: " SendToBrokerSubmitDate",
+      dataIndex: " sendToBroker",
+      key: " sendToBroker",
       render(value) {
         return <span>{toJalali(value)}</span>;
       },
     },
     {
       title: t("general.SubmitDate"),
-      ...SubmitDateProps(),
+      ...getColumnDateProps("SubmitDate"),
       ...getColumnSortProps("SubmitDate"),
       width: 150,
       ellipsis: true,
@@ -124,44 +133,51 @@ const useTableConfig = () => {
     },
     {
       title: t("general.ApprovePishkhanSubmitDate"),
-      ...ApprovePishkhanSubmitDateProps(),
-      ...getColumnSortProps("ApprovePishkhanSubmitDate"),
+      ...getColumnDateProps("approveByOfficer"),
+      ...getColumnSortProps("approveByOfficer"),
       width: 150,
       ellipsis: true,
-      dataIndex: "ApprovePishkhanSubmitDate",
-      key: "ApprovePishkhanSubmitDate",
+      dataIndex: "approveByOfficer",
+      key: "approveByOfficer",
       render(value) {
         return <span>{toJalali(value)}</span>;
       },
     },
     {
       title: t("general.AuthenticatedSubmitDate"),
-      ...AuthenticatedSubmitDateProps(),
-      ...getColumnSortProps("ApprovePishkhanSubmitDate"),
+      ...getColumnDateProps("customerAuthenticated"),
+      ...getColumnSortProps("customerAuthenticated"),
       width: 150,
       ellipsis: true,
-      dataIndex: " AuthenticatedSubmitDate",
-      key: " AuthenticatedSubmitDate",
+      dataIndex: " customerAuthenticated",
+      key: " customerAuthenticated",
       render(value) {
         return <span>{toJalali(value)}</span>;
       },
     },
 
-    {
-      title: t("general.IsClosed"),
-      width: 180,
-      ellipsis: true,
-      dataIndex: "IsClosed",
-      key: "IsClosed",
-      ...getColumnSearchProps("followUpType"),
-    },
+    // {
+    //   title: t("general.IsClosed"),
+    //   width: 180,
+    //   ellipsis: true,
+    //   dataIndex: "IsClosed",
+    //   key: "IsClosed",
+    //   ...getColumnSearchProps("IsClosed"),
+    //   render(value) {
+    //     return (
+    //       <div className="flex justify-center">
+    //         {value ? <MdOutlineCheck size={18} /> : ""}
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       title: t("general.CityTitle"),
       width: 140,
       ellipsis: true,
-      dataIndex: "CityTitle",
-      key: "CityTitle",
-      ...getColumnSearchProps("CityTitle"),
+      dataIndex: "city",
+      key: "city",
+      ...getColumnSearchProps("city"),
     },
     {
       title: t("general.PostalBarcode"),
@@ -171,13 +187,13 @@ const useTableConfig = () => {
       key: "PostalBarcode",
       ...getColumnSearchProps("PostalBarcode"),
     },
-    {
-      title: t("general.ReasonDescription"),
-      width: 180,
-      ellipsis: true,
-      dataIndex: "ReasonDescription",
-      key: "ReasonDescription",
-    },
+    // {
+    //   title: t("general.ReasonDescription"),
+    //   width: 180,
+    //   ellipsis: true,
+    //   dataIndex: "ReasonDescription",
+    //   key: "ReasonDescription",
+    // },
   ];
 
   return columns;

@@ -67,7 +67,8 @@ const axiosBaseQuery =
         onUploadProgress,
       });
 
-      return { data: result.data };
+
+      return { data: result.data.result };
     } catch (axiosError) {
       let err = axiosError as AxiosError;
 

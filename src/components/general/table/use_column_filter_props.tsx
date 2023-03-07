@@ -7,6 +7,7 @@ import IInput from "../input";
 import { MdOutlineFilterAlt } from "react-icons/md";
 import SearchIcon from "@/components/icons/search";
 import { SortOrder } from "antd/es/table/interface";
+import { isArray } from "lodash";
 import { parse } from "query-string";
 import { useI18Next } from "@/i18n";
 import { useLocation } from "react-router-dom";
@@ -18,6 +19,7 @@ const useColumnFilterProps = () => {
   const { t } = useI18Next();
   const { search } = useLocation();
   const filterValues = parse(search) as any;
+
   const getColumnFilterProps = (
     dataIndex: any,
     title?: string
@@ -30,11 +32,11 @@ const useColumnFilterProps = () => {
     ),
     className: `${filterValues[dataIndex] ? "bg-gray-100/60 font-bold" : ""}`,
     filterSearch: true,
-    filteredValue: filterValues[dataIndex],
-    defaultSortOrder:
-      filterValues["sortField"] == dataIndex && filterValues["sortOrder"]
-        ? filterValues["sortOrder"]
-        : undefined,
+    filteredValue: isArray(filterValues[dataIndex])
+      ? filterValues[dataIndex]
+      : filterValues[dataIndex]
+      ? [filterValues[dataIndex]]
+      : null,
   });
 
   return getColumnFilterProps;

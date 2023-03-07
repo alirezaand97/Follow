@@ -14,6 +14,11 @@ const ISelect = (props: Props) => {
       className="w-full"
       clearIcon={<CloseIcon color="!fill-black" />}
       suffixIcon={<ArrowDown className="!w-4.5 !h-4.5 -mt-1 -ml-1.5" />}
+      filterOption={(input, option) =>
+        ((option?.label as string) ?? "")
+          ?.toLowerCase()
+          .includes(input.toLowerCase())
+      }
       notFoundContent={
         <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}

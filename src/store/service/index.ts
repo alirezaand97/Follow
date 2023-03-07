@@ -5,7 +5,7 @@ const serviceApi = createApi({
   baseQuery: axiosBaseQuery(),
   reducerPath: "serviceApi",
   endpoints: () => ({}),
-  tagTypes: ["registrationRequest"],
+  tagTypes: ["registrationRequest","requestNote"],
 });
 
 export default serviceApi;

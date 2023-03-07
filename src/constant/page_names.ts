@@ -2,7 +2,7 @@ const pageNames = {
   registration: {
     registrationRequests: "/registration/registrationRequest",
     branchSetting: "/registration/branchSetting",
-    counterList: "/registration/pishkhanList",
+    pishkhanList: "/registration/pishkhanList",
     AuthCenterOperational: "/registration/AuthCenterOperational",
   },
   home: "/",

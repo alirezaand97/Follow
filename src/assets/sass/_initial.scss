@@ -19,13 +19,35 @@ body {
 .iinput {
   @apply bg-gray-100 focus:bg-gray-200;
 }
+.iscroll {
+  scrollbar-color: #cbd5e0;
+  scrollbar-width: thin;
+  overflow-x: auto;
+  overflow-y: auto;
+  
+}
 .iscroll::-webkit-scrollbar {
-  width: 4px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   cursor: pointer;
 }
 
 .iscroll::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  cursor: pointer;
+}
+
+.iscroll-hide {
+  scrollbar-color: #cbd5e0;
+  scrollbar-width: none;
+}
+.iscroll-hide::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  cursor: pointer;
+}
+
+.iscroll-hide::-webkit-scrollbar-thumb {
   background: #cbd5e0;
   cursor: pointer;
 }
@@ -72,4 +94,10 @@ body {
 
 .ant-input-clear-icon {
   @apply flex;
+}
+
+.side-tabs {
+  .ant-tabs-content-holder {
+    @apply overflow-y-auto iscroll pl-4 pr-2 py-4;
+  }
 }
